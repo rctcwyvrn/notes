@@ -19,8 +19,10 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-    - name: Latex compiler
-      uses: Jatus93/Latex-multicompiler@master
+    - name: Compilation
+      uses: vinay0410/tectonic-action@master
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        path_to_list: 'document_list.txt' 
-        artifact: true
+        tex_path: 'math/napkin/groups/main.tex'
+        push: 'yes'
