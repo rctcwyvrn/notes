@@ -1,0 +1,243 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{framed}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{braket}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+
+\definecolor{mycolor}{rgb}{0.122, 0.435, 0.698}
+\definecolor{exampleBorder}{rgb}{0.8, 0.58, 0.46}
+\definecolor{propBorder}{rgb}{0.0, 0.5, 0.0}
+\definecolor{theoremBorder}{rgb}{0.2, 0.2, 0.6}
+\definecolor{proofBorder}{rgb}{1.0, 0.44, 0.37}
+\definecolor{rmkBorder}{rgb}{0.75, 0.58, 0.89}
+\definecolor{claimBorder}{rgb}{0.0, 0.42, 0.24}
+\definecolor{lemmaBorder}{rgb}{0.4, 0.6, 0.8}
+
+\newmdenv[innerlinewidth=0.5pt, roundcorner=4pt,linecolor=mycolor,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{definition}
+\newmdenv[innerlinewidth=0.5pt, roundcorner=4pt,linecolor=exampleBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{example}
+\newmdenv[innerlinewidth=0.5pt, roundcorner=4pt,linecolor=propBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{prop}
+\newmdenv[innerlinewidth=0.5pt, roundcorner=4pt,linecolor=theoremBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{theorem}
+\newmdenv[innerlinewidth=0.5pt, roundcorner=4pt,linecolor=proofBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{proof}
+\newmdenv[innerlinewidth=0.5pt, roundcorner=4pt,linecolor=rmkBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{remark}
+\newmdenv[innerlinewidth=0.5pt, roundcorner=4pt,linecolor=claimBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{claim}
+\newmdenv[innerlinewidth=0.5pt, roundcorner=4pt,linecolor=lemmaBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{lemma}
+
+\title{Napkin notes}
+\author{rctcwyvrn }
+\date{August 2020}
+
+\begin{document}
+
+\maketitle
+
+
+\section{Groups}
+\subsection{Basics}
+A group is the pair $(G,*)$ such that
+\begin{itemize}
+    \item G contains an identity element $1_G$ such that $1_G * g = g = g * 1_G \forall g \in G$
+    \item $*$ is associative, $(a*b)*c = a*(b*c)$, so the parenthesis can be fully omitted.
+    \item Each element $g\in G$ has an inverse $h\in G$ st. $g*h = 1_G$
+\end{itemize}
+Remark: It is not required that $*$ is commutative, ie $a*b = b*a$ \\
+\newline
+Examples: 
+\begin{itemize}
+    \item $(Z,+)$
+    \item $(Q$ without $0, \cdot)$
+    \item The complex unit circle, $(S^1,\times)$. $1$ is the identity and all inverses $1/z$ must be on the unit circle since $|1/z| = 1$ $\forall z \in S^1$
+    \item \textbf{Cyclical group} of order n $\mathbb{Z}/n\mathbb{Z}$
+    \item \textbf{Nonzero residues mod prime p} $(\mathbb{Z}/p\mathbb{Z})^\times$ \newline \textbullet  Note: We need p to be a prime because ?? I have no fucking clue
+    \item The \textbf{trivial group}, the group with just the identity element
+\end{itemize}
+Non-abellian examples (Group operators are not commutative):
+\begin{itemize}
+    \item \textbf{General linear matricies} of size n: $GL_n(\mathbb{R})$. $n \times n$ real matricies which have nonzero determinant. It turns out that each inverse will also have nonzero determinant so the group is valid. Follows from $det(AB) = detAdetB$, so if they're inverses $1 = detAdetB$ so they're both non-zero
+    \item $SL_n(\mathbb{R})$, \textbf{Special Linear}, a subset of General Linear where the determinant is 1. Similarly valid because $det(AB) = detAdetB$ implies $det(I) = 1 = 1 * detB$ so $detB = 1$ and must be in $SL_n$
+    \item $S_n$ a set of permutations of ${1..n}$ imagined as functions from ${1..n}$ to itself. The group operator is then composition. 
+    \begin{itemize}
+        \item The identity permutation is the one that doesn't move any elements
+        \item The inverse of a permutation is the one that moves the elements in the exact opposite way as the original. So the net result of applying both the original and the inverse is no change, the identity permutation
+    \end{itemize}
+    \item The \textbf{dihedral group of order 2n}, $D_{2n}$. The set is the set of orientations of a n-gon with $[1..n-1]$ rotations or a reflection and $[1..n-1]$ rotations. Each orientation is coded as the operations required to get there, so the group operator is like composition.
+    \begin{itemize}
+        \item The identity orientation is with 0 rotations and 0 reflections
+        \item Note that $r^n = 1$ and $s^2 = 1$, so the inverse of $s^cr^d$ is $s^cr^b$ where $b = n - d$
+    \end{itemize}
+    \item The \textbf{product group} of groups $(G,*_g)$ and $(H,*_h)$,  $(G\times H,*)$ defined as
+    \begin{itemize}
+        \item The set $G\times H$
+        \item The operator * where $(g_1,h_1)*(g_2,h_2) = (g_1*_g g_2, h_1 *_h h_2)$
+    \end{itemize}
+    
+\end{itemize}
+Non-examples:
+\begin{itemize}
+    \item $(\mathbb{Z},*)$ because the identity is $1$ and there are no inverses
+    \item $(\mathbb{Z}^+,+)$ because no inverses
+\end{itemize}
+Notation: A group $(G,*)$ will just be referred to as $G$ and $a*b$ as just $ab$.
+Notation: $g^n = g*g*...*g$ and $g^{-1}$ is the inverse of $g$
+\subsection{Properties of groups}
+Time to deduce as much as possible about groups from just the definitions
+Claim:
+\begin{itemize}
+    \item The identity of a group is unique
+    \item The inverse is also unique
+    \item The inverse of $g^{-1}$ is $g$
+\end{itemize}
+Proof:
+\begin{itemize}
+    \item Assume there are two identities $1$ and $1`$. Then $1*1` = 1$ and $= 1`$, so $1=1`$
+    \item Assume there are two inverses $h$ and $j$ for $g$. Then $h = h*1_g = h * (g * j) = (h * g) * j  = 1_g*j = j$
+    \item $(g^{-1})^{-1}*g^{-1} = 1_g = g * g^{-1}$
+\end{itemize}
+~\\
+A more useful proposition \\
+~\\
+\textbf{Proposition:} Inverse of products~\\
+~\newline
+\indent \fbox{Let $G$ be a group and $a,b\in G$, then $(ab)^{-1} = b^{-1}a^{-1}$}
+~\\
+~\\
+\textbf{Proof} Just compute it
+$$(ab)(b^{-1}a^{-1}) = a(bb^{-1})a^{-1} = a1_Ga^{-1} = aa^{-1} = 1_G$$
+~\\
+\textbf{Lemma:} Left multiplication is a bijection ~\\
+~\\
+\indent \fbox{Let $G$ be a group, pick a $g\in G$. Then the map $G \rightarrow G$ given by $x \mapsto gx$ is a bijection}
+~\\
+\textbf{Proof}
+\begin{itemize}
+    \item Injectivity: Consider arbitrary $x,y$ such that $gx = gy$. $x = 1_g * x = g^{-1}(gx) = g^{-1}(gy) = 1_G*y = y $, so $x = y$.
+    \item Surjectivity: Consider arbitrary $y\in G$. Let $x = g^{-1}y$. $f(x) = gg^{-1}y = 1_Gy = y$.
+\end{itemize}
+\subsection{Isomorphisms}
+What does it mean for groups to be isomorphic?
+~\\
+~\\
+Consider 
+\begin{itemize}
+	\item $\mathbb{Z} = [\ldots -2,-1,0,1,2 \ldots]$ 
+	\item $10\mathbb{Z}= [\ldots -20,-10,0,10,20]$	
+\end{itemize}
+~\\
+These groups are "different" but not really. You can think of it as the "names" of the values are different, but the values in the groups are actually basically the same.
+~\\
+Specifically this means there exists a bijection map between the two groups $x \mapsto 10x$, which respects the group action, $f\left( x + y \right) = f\left( x \right) + f\left( y \right) $
+~\\
+~\\
+So $f$ can re-assign the names without changing the structure of the group or how elements interact with eaceh other, so now we can say that the two groups  $\mathbb{Z}$ and  $10\mathbb{Z}$ are really the same thing
+~\\
+~\\
+\textbf{Definition}  Isomorphism 
+\begin{framed}
+	Let $\left( G,* \right) $ and $(H,\star)$ be groups. A bijection  $\phi:G\mapsto H$ is an \textbf{isomorphism} if \\ 
+	~\\
+	\indent $\phi\left(g_1 * g_2  \right) = \phi(g_1) \star \phi(g_2)$,  $\forall g_1,g_2 \in G$
+\end{framed}
+Write isomorphic as $G\cong H$
+
+\textbf{Example}
+\begin{framed}
+	The cyclical group mod 6 and the non-zero residues mod 7. The group operator for the first is $+$ and the second is $\times$. 
+	\begin{center}
+		\textbf{Claim}: The bijection is $\phi(a \mod 6) = 3^a \mod 7$. 
+        \end{center}
+	\begin{itemize}
+		\item Does it make sense? If $a \equiv b \mod 6$, does that imply that $3^a = 3^b \mod 7$? Yes, because Fermat's little theorem.
+		\item Is it a bijection? Check manually and it turns out that it is
+		\item Does it respect the group action? Yes because $\phi(a+b) = 3^{a+b} = 3^a \times 3^b$
+	\end{itemize}
+\end{framed}
+\subsection{Order of groups + Langrange's theorem}
+Two definitions of order for groups:
+\begin{enumerate}
+	\item \textbf{Order of a group $G$, $|G|$} is the number of elements in $G$
+		\begin{itemize}
+			\item Example: The order of the cyclic group $\mathbb{Z}/n\mathbb{Z}$ is n
+		\end{itemize}
+	\item \textbf{Order of an element $g$, $ord(g)$} is the smallest positive integer $n$ such that $g^n = 1_G$, or $\infty$.
+		\begin{itemize}
+			\item The order of $-1$ in $(\mathbb{Q},\times)$ is 2
+			\item The order of each element of $\mathbb{Z}/6\mathbb{Z}$
+			\begin{itemize}
+				\item $ord(1) = 6$
+				\item $ord(2) = 3$
+				\item $ord(3) = 2$
+				\item $ord(4) = 3$
+				\item $ord(5) = 6$
+			\end{itemize}
+		\end{itemize}
+\end{enumerate}
+Fun facts
+\begin{enumerate}
+	\item If $g^n = 1_G$ then $ord(g)$ divides $n$
+	\item Let $G$ be a finite group, $ord(g)$ is finite $\forall g \in G$
+\end{enumerate}
+\textbf{Theorem: Langrange's theorem for orders}
+\begin{framed}
+	Let $G$ be a finite group. Then $x^{|G|} = 1_G$, $\forall x \in G$ 
+\end{framed}
+This theorem is basically a generic Fermat's little theorem, ie that in the residues mod prime p, $a^{p-1} = 1$
+
+\subsection{Subgroups}
+\begin{definition} 
+\textbf{Definition:} Subgroup \\
+~\\
+A {\color{blue} subgroup} is a group $(iH,\star)$ where $H$ is a subset of $G$ and $(G,\star)$ is a group
+
+\end{definition}
+\begin{itemize}
+	\item If $H \neq G$, then $H$ is a {\color{blue} proper subgroup}
+\end{itemize}
+\begin{remark} 
+\textbf{Remark:} To specify the subgroup you only need to know the set $H$, the operator $\star$ is inherited 
+\end{remark}
+\begin{example} 
+\textbf{Example:} Subgroups
+\begin{itemize}
+	\item $2 \Z$ is a subgroup of $\Z$, and is also isomorphic to $\Z$
+	\item A subset of the permutations from $[1..n] \mapsto [1..n]$, except the last element always stays the same at the $n$th position
+	\item The subset of $G\times H$, $(g,1_H)$ $\forall g\in G$. The group operation still works because $1_H \star 1_H = 1_H$. It's also isomorphic to $G$ by the map $(g,1_H) \mapsto g$
+	\item Stupid examples 
+		\begin{itemize}
+			\item The trivial group $\{1_G\}$
+			\item The entire group $G$
+		\end{itemize}
+\end{itemize}
+\end{example}
+\begin{example} 
+\textbf{Example:} Subgroup generated by $x$ \\
+~\\
+This boi $\braket{x} = \{\ldots, x^{-2}, x^{-1}, 1, x, x^2, x^3, \ldots\} $
+\begin{itemize}
+	\item So if $ord(x) = 5$, the subgroup is $\braket{x} = {1,x,x^2,x^3,x^4}$ . Isomorphic to the cyclic group ${\Z}/{5\Z}$ by the map $x^n \mapsto n$
+	\item If $ord(x) = \infty$ then the subgroup generated by x is just $G$	
+\end{itemize}
+\end{example}
+\begin{example} 
+	\textbf{Example:} Non examples of subgroups (of $(Z,+)$
+\begin{itemize}
+	\item The set $\{0\ldots\}$ because it is not a group, does not contain inverses.
+	\item The set of all integer cubes is not a subgroup because it's not closed under addition
+	\item The empty set is not a subgroup because it does not have an identity element
+\end{itemize}
+\end{example}
+
+\begin{remark} 
+\textbf{Remark:} Why these axioms? Why associative and not commutative?
+\begin{itemize}
+	\item In general you want to balance making an definition nice to work with, and making it apply to enough objects
+	\item Associativity is nice and is also true for almost all operations. It allows us to prove the inverse is unique, which in turn gives us a nice bit of symmetry 
+\end{itemize}
+\end{remark}
+\end{example}
+\end{document}
