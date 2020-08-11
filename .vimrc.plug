@@ -1,0 +1,30 @@
+call plug#begin('~/.vim/plugged')
+
+Plug 'tpope/vim-fugitive'
+Plug 'frazrepo/vim-rainbow'
+Plug 'itchyny/lightline.vim'
+Plug 'preservim/nerdtree'
+Plug 'airblade/vim-gitgutter'
+Plug 'vim-syntastic/syntastic'
+Plug 'neovimhaskell/haskell-vim'
+Plug 'alx741/vim-hindent'
+Plug 'sirver/ultisnips'
+    let g:UltiSnipsExpandTrigger = '<tab>'
+    let g:UltiSnipsJumpForwardTrigger = '<tab>'
+    let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
+Plug 'lervag/vimtex'
+    let g:tex_flavor='latex'
+    let g:vimtex_view_method='zathura'
+    let g:vimtex_quickfix_mode=0
+
+Plug 'KeitaNakamura/tex-conceal.vim'
+    set conceallevel=1
+    let g:tex_conceal='abdmg'
+    hi Conceal ctermbg=none
+
+setlocal spell
+set spelllang=en_us
+inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
+
+call plug#end()
+
