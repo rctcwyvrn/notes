@@ -1,7 +1,5 @@
-*.*
-!*.tex
-!.gitignore
-!.vim*
-!*.snippets
-!README.md
-!document_list.txt
+*.aux
+*.fdb_latexmk
+*.dvi
+*.fls
+*.log

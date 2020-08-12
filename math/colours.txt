@@ -1,0 +1,36 @@
+snippet ~define_colour "Define all my goddamn colours" bA
+
+\definecolor{mycolor}{rgb}{0.122, 0.435, 0.698}
+\definecolor{exampleBorder}{rgb}{0.8, 0.58, 0.46}
+\definecolor{propBorder}{rgb}{0.0, 0.5, 0.0}
+\definecolor{theoremBorder}{rgb}{0.2, 0.2, 0.6}
+\definecolor{proofBorder}{rgb}{1.0, 0.44, 0.37}
+\definecolor{rmkBorder}{rgb}{0.75, 0.58, 0.89}
+\definecolor{claimBorder}{rgb}{0.0, 0.42, 0.24}
+\definecolor{lemmaBorder}{rgb}{0.4, 0.6, 0.8}
+
+\newmdenv[innerlinewidth=0.5pt, roundcorner=4pt,linecolor=mycolor,innerleftmargin=12pt,
+innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{definition}
+
+\newmdenv[innerlinewidth=0.5pt, roundcorner=4pt,linecolor=exampleBorder,innerleftmargin=12pt,
+innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{example}
+
+\newmdenv[innerlinewidth=0.5pt, roundcorner=4pt,linecolor=propBorder,innerleftmargin=12pt,
+innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{prop}
+
+\newmdenv[innerlinewidth=0.5pt, roundcorner=4pt,linecolor=theoremBorder,innerleftmargin=12pt,
+innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{theorem}
+
+\newmdenv[innerlinewidth=0.5pt, roundcorner=4pt,linecolor=proofBorder,innerleftmargin=12pt,
+innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{proof}
+\newmdenv[innerlinewidth=0.5pt, roundcorner=4pt,linecolor=rmkBorder,innerleftmargin=12pt,
+innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{remark}
+\newmdenv[innerlinewidth=0.5pt, roundcorner=4pt,linecolor=claimBorder,innerleftmargin=12pt,
+innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{claim}
+\newmdenv[innerlinewidth=0.5pt, roundcorner=4pt,linecolor=lemmaBorder,innerleftmargin=12pt,
+innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{lemma}
+
+endsnippet
+
+
+
