@@ -1,4 +1,6 @@
-# This is a basic workflow to help you get started with Actions
+# Old github action for compiling notes automatically.
+# this works but is slow and only does one tex file at a time, which will get really annoying really fast
+# instead opt for a jank python script with latexmk
 
 name: compile_notes
 
