@@ -2,7 +2,7 @@ set nocompatible
 
 filetype off
 
-syntax on 
+" syntax on 
 filetype plugin indent on
 
 set modelines=0
@@ -46,6 +46,10 @@ let g:vimtex_quickfix_mode=0
 set conceallevel=1
 let g:tex_conceal='abdmg'
 hi Conceal ctermbg=none
+
+setlocal spell
+set spelllang=en_us
+inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 
 
 set visualbell

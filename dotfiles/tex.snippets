@@ -623,11 +623,11 @@ snippet "hat" "hat" riA
 \hat{$1}$0
 endsnippet
 
-priority 100
-context "math()"
-snippet "([a-zA-Z])hat" "hat" riA
-\hat{`!p snip.rv=match.group(1)`}
-endsnippet
+#priority 100
+#context "math()"
+#snippet "([a-zA-Z])hat" "hat" riA
+#\hat{`!p snip.rv=match.group(1)`}
+#endsnippet
 
 snippet letw "let omega" iA
 Let $\Omega \subset \C$ be open.
@@ -764,7 +764,7 @@ snippet ~template "My template" bA
 \newmdenv[innerlinewidth=0.5pt, roundcorner=4pt,linecolor=claimBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{claim}
 \newmdenv[innerlinewidth=0.5pt, roundcorner=4pt,linecolor=lemmaBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{lemma}
 
-\title{$1}
+\title{$0}
 \author{rctcwyvrn }
 \date{August 2020}
 
