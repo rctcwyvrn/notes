@@ -2,6 +2,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{amsfonts}
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{framed}
 \usepackage[framemethod=tikz]{mdframed}
 \usepackage{braket}
@@ -187,4 +188,91 @@ The image of a homomorphism forms a subgroup as well
 \end{remark}
 
 \subsection{Cosets and modding out}
+Here's the idea:
+\begin{itemize}
+	\item Consider a surjective homomorphism $\phi: G\to Q$ that is not injective (ker$\phi$ is non-trivial), what can we say about it?
+	\item Consider a related case, $f: \Z\to \Z/{100\Z}$, the kernel is $100\Z$
+		\begin{itemize}
+			\item We also then know that $f(x) = f(g + x)$ $\forall g\in$ ker$\phi$
+			\item This basically means that $f$ doesn't really care about elements of the subgroup $100Z$, it's \textbf{indifferent}.
+			\item Similarly, notice that for $N=100\Z$,
+				\begin{align}	
+					N &= \{\ldots-200,-100,0,100,200\ldots\} \\
+					1 + N &= \{\ldots-199,-99,1,101,201\ldots\}\\
+					\ldots \\
+					99 + N &= \{\ldots-101,-1,99,199,299\ldots\}
+				\end{align}
+			\item The image for each of those sets is the same, img$(g + N) = \{g\}$
+		\end{itemize}
+\end{itemize}
+\newpage
+\begin{definition} 
+\textbf{Definition:} Quotient groups \\
+~\\
+Let $\phi: G\to Q$ be a surjective homomorphism with kernel $N$ (subgroup of $G$)
+\center{We claim that in this case, $Q$ should be thought of as the {\color{blue} \textbf{quotient}} of $G$ by $N$}
+\begin{itemize}
+	\item Notation: $G/N$ 
+\end{itemize}
+\end{definition}
+\begin{remark} 
+\textbf{Remark:} We can think of $Q$ as the group whose elements are represented by the sets, ie for the $\Z/100\Z$ homomorphism, the elements of $Q$ can be thought of as these sets 
+	\begin{align}	
+		N &= \{\ldots-200,-100,0,100,200\ldots\} \\
+		1 + N &= \{\ldots-199,-99,1,101,201\ldots\}\\
+		\ldots \\
+		99 + N &= \{\ldots-101,-1,99,199,299\ldots\}
+	\end{align}
+	\begin{itemize}
+		\item Note how there are exactly 100 of these sets, just like $Q$ (which is $\Z /100\Z$ remember)
+		\item If the homomorphism had been an isomorphism, then each one of those sets would have one value, and there would be exactly as many elements as the cardinality of $G$
+	\end{itemize}
+\end{remark}
+\begin{remark} 
+	\textbf{Remark:} We can also define an equivalence relation $\sim _N$ on $G$ where $x \sim _N y$ iff $\phi(x) = \phi(y)$, ie they belong to the same set $a + N$ 
+\end{remark}
+\begin{definition} 
+\textbf{Definition:} Left coset \\
+~\\
+Let $H$ be any subgroup of $G$. A set of the form $gH$ is called a {\color{blue} \textbf{left coset}} of $H$
+\end{definition}
+\begin{remark} 
+	\textbf{Remark:} $g_1N$ is often equal to $g_2N$ even if $g_1\neq g_2$. ie $g_1=3$ and $g_2=103$ for the $\Z /100\Z$ group 
+\end{remark}
+\begin{remark} 
+	\textbf{Remark:} Given cosets $g_1H$ and $g_2H$, $x \mapsto g_2g_1^{-1}x$ is a bijection from $g_1H \to g_2H$ (Note this means all cosets have the same cardinality) 
+\end{remark}
+\begin{remark} 
+	\textbf{Remark:} \textbf{Elements of the quotient group $Q$ are naturally identified with left cosets of the divisor group, $N$ } 
+	\begin{itemize}
+		\item This is just a formalization of what was mentioned before, that we can think of the elements of the quotient group $Q$ as those sets (which turned out to be the left cosets of N)
+	\end{itemize}
+\end{remark}
+\begin{definition} 
+\textbf{Definition:} Normal groups \\
+~\\
+A subgroup $N$ of $G$ is {\color{blue} \textbf{normal}} if it is the kernel of some homomorphism.
+\begin{itemize}
+	\item Notation: $N\trianglelefteq G$
+\end{itemize}
+\end{definition}
+\begin{definition} 
+\textbf{Definition:} Quotient groups again \\
+~\\
+Let $N\trianglelefteq G$, then the {\color{blue} \textbf{quotient group}}, denoted $G /N$ (read: "G mod N") is defined as follows
+\begin{itemize}
+	\item The elements of $G /N$ are left cosets of $N$
+	\item Define the product of two cosets as such
+	\begin{itemize}
+		\item Recall that each coset corresponds to one value in $Q$ (what the fuck does $Q$ refer to here? The quotient group? The ONE THAT SUPPOSED TO BE MADE UP OF COSETS? I AM CONFUSION)
+		\item Take the product of cosets to be the coset corresponding to the product of the values in $Q$ for the two cosets
+		\item Note: We can do this with the representatives of the cosets
+		\begin{itemize}
+			\item Let $C_1 = g_1N$ and $C_2 = g_2N$. 
+			\item Then $C_1 \cdot C_2$ should be the coset $g_1g_2H$ (the coset that contains $g_1g_2$)
+		\end{itemize}
+	\end{itemize}
+\item By this definition, $G/ N$ is isomorphic to $Q$ (the old definition of a quotient group)
+\end{itemize}
+\end{definition}
 \end{document}
