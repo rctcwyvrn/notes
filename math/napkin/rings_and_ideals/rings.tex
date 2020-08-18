@@ -1,0 +1,120 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{framed}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{braket}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\qed}{\null\nobreak\hfill\ensuremath{\square}}
+
+\definecolor{mycolor}{rgb}{0.122, 0.435, 0.698}
+\definecolor{exampleBorder}{rgb}{0.8, 0.58, 0.46}
+\definecolor{propBorder}{rgb}{0.0, 0.5, 0.0}
+\definecolor{theoremBorder}{rgb}{0.2, 0.2, 0.6}
+\definecolor{proofBorder}{rgb}{1.0, 0.44, 0.37}
+\definecolor{rmkBorder}{rgb}{0.75, 0.58, 0.89}
+\definecolor{claimBorder}{rgb}{0.0, 0.42, 0.24}
+\definecolor{lemmaBorder}{rgb}{0.4, 0.6, 0.8}
+
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=mycolor,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{definition}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=exampleBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{example}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=propBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{prop}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=theoremBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{theorem}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=proofBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{proof}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=rmkBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{remark}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=claimBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{claim}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=lemmaBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{lemma}
+
+\title{Rings and ideals}
+\author{rctcwyvrn }
+\date{August 2020}
+
+\begin{document}
+
+\maketitle
+
+
+\section{Rings and ideals}
+\subsection{Motivational metaphors}
+\begin{center}
+	\begin{tabular}{c c c}
+		Term & Groups & Rings \\
+		Notation & $G$ & $R$ \\
+		Operations & $\cdot$ & $+, \times$ \\
+		Commutativity & abelian only & for us, always \\ 
+		Sub-structure & subgroup & (not discussed) \\
+		Kernel & normal subgroup & ideal \\
+		Quotient & $G /H$ & $R /I$ \\
+	\end{tabular}
+\end{center}
+Other motivational notes
+\begin{itemize}
+	\item We want to try to generalize the properties we see in $\Z$ to any abelian group where we can also multiply
+	\item So we can talk about "primes" (irreducible polynomials) in a polynomial ring
+	\item Note: Lots of interesting overlap/re-interpretation of this chapter in alg geo so keep that in mind
+\end{itemize}
+\subsection{Rings}
+\begin{definition} 
+\textbf{Definition:} Ring \\
+~\\
+A {\color{blue} \textbf{ring}} is a triple ($R$,$+$,$\times$) such that
+\begin{itemize}
+	\item $(R,+)$ is an abelian group, with identity $0_R$ (notation: Just $0$)
+	\item $\times$ is a binary associative operator, with an identity $1_R$
+	\item Multiplication distributes over addition
+\end{itemize}
+Also
+\begin{itemize}
+	\item $R$ is {\color{blue} \textbf{commutative}} if multiplication is commutative
+	\item Abbreviate $(R,+,\times)$ to just $R$
+	\item For simplicity, assume all rings are commutative for the rest of this chapter
+	\item $+$ and $\times$ are usually just referred to as addition and multiplication
+\end{itemize}
+\end{definition}
+\begin{remark} 
+\textbf{Remark:} Some ring facts
+\begin{itemize}
+	\item For all $r \in R$, $r \times 0_R = 0_R$ and $r \times (-1_R) = -r$
+\end{itemize}
+\end{remark}
+\begin{example} 
+\textbf{Example:} Typical rings
+\begin{itemize}
+      \item $\Z, \Q, \R, \C$ are all rings with the usual addition and multiplication.
+      \item The integer mod $n$ are also a ring with the usual operators (call it $\Z /n\Z$
+\end{itemize}
+\end{example}
+\begin{definition} 
+\textbf{Definition:} Zero ring \\
+~\\
+The {\color{blue} \textbf{zero ring}} is the ring with a single element. Denote with $0$. A ring is {\color{blue} \textbf{nontrivial}} if it is not the zero ring
+\begin{itemize}
+	\item Note: A ring is trivial iff $0_R = 1_R$ (duh)
+\end{itemize}
+\end{definition}
+\begin{example} 
+\textbf{Example:} Product ring \\
+~\\
+Given two rings $R$, $S$, the {\color{blue} \textbf{product ring}} ($R \times S$), is defined as you would expect, the operators go to their respective pairs
+\end{example}
+\begin{example} 
+\textbf{Example:} Polynomial ring \\
+~\\
+Given any ring $R$, the {\color{blue} \textbf{polynomial ring}} $R\left[x\right]$ is defined as the set of polynomials with coefficients in $R$: 
+\[
+	R\left[x\right] = \{ \}
+.\] 
+\begin{itemize}
+	\item I'm  too lazy to type it all out but it's defined as you would expect, polynomials of arbitrary order with coefficients in $R$
+	\item Addition and multiplication are done exactly as expected, distribute n stuff
+	\item Called "$R$ adjoin $x$"
+\end{itemize}
+
+\end{example}
+\end{document}
+
