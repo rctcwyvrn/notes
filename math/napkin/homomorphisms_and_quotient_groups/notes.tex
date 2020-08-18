@@ -11,6 +11,7 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\qed}{\null\nobreak\hfill\ensuremath{\square}}
 
 \definecolor{mycolor}{rgb}{0.122, 0.435, 0.698}
 \definecolor{exampleBorder}{rgb}{0.8, 0.58, 0.46}
@@ -21,14 +22,14 @@
 \definecolor{claimBorder}{rgb}{0.0, 0.42, 0.24}
 \definecolor{lemmaBorder}{rgb}{0.4, 0.6, 0.8}
 
-\newmdenv[innerlinewidth=0.5pt, roundcorner=4pt,linecolor=mycolor,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{definition}
-\newmdenv[innerlinewidth=0.5pt, roundcorner=4pt,linecolor=exampleBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{example}
-\newmdenv[innerlinewidth=0.5pt, roundcorner=4pt,linecolor=propBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{prop}
-\newmdenv[innerlinewidth=0.5pt, roundcorner=4pt,linecolor=theoremBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{theorem}
-\newmdenv[innerlinewidth=0.5pt, roundcorner=4pt,linecolor=proofBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{proof}
-\newmdenv[innerlinewidth=0.5pt, roundcorner=4pt,linecolor=rmkBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{remark}
-\newmdenv[innerlinewidth=0.5pt, roundcorner=4pt,linecolor=claimBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{claim}
-\newmdenv[innerlinewidth=0.5pt, roundcorner=4pt,linecolor=lemmaBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{lemma}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=mycolor,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{definition}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=exampleBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{example}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=propBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{prop}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=theoremBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{theorem}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=proofBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{proof}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=rmkBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{remark}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=claimBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{claim}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=lemmaBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{lemma}
 
 \title{Homomorphisms and quotient groups}
 \author{rctcwyvrn}
@@ -254,6 +255,11 @@ Let $H$ be any subgroup of $G$. A set of the form $gH$ is called a {\color{blue}
 A subgroup $N$ of $G$ is {\color{blue} \textbf{normal}} if it is the kernel of some homomorphism.
 \begin{itemize}
 	\item Notation: $N\trianglelefteq G$
+	\item Equivalent definitions of a normal subgroup are
+	\begin{itemize}
+		\item That the subgroup is closed under conjugation from $G$, ie $gng^{-1}\in N$ $\forall g\in G$ and $n\in N$
+		\item That the cosets of $N$ form a group (the quotient group)
+	\end{itemize}
 \end{itemize}
 \end{definition}
 \begin{definition} 
@@ -264,9 +270,8 @@ Let $N\trianglelefteq G$, then the {\color{blue} \textbf{quotient group}}, denot
 	\item The elements of $G /N$ are left cosets of $N$
 	\item Define the product of two cosets as such
 	\begin{itemize}
-		\item Recall that each coset corresponds to one value in $Q$ (what the fuck does $Q$ refer to here? The quotient group? The ONE THAT SUPPOSED TO BE MADE UP OF COSETS? I AM CONFUSION)
-		\item Take the product of cosets to be the coset corresponding to the product of the values in $Q$ for the two cosets
-		\item Note: We can do this with the representatives of the cosets
+		\item Recall that each coset corresponds to one value in $G$
+		\item Take the product of the cosets using those representatives
 		\begin{itemize}
 			\item Let $C_1 = g_1N$ and $C_2 = g_2N$. 
 			\item Then $C_1 \cdot C_2$ should be the coset $g_1g_2H$ (the coset that contains $g_1g_2$)
@@ -275,4 +280,132 @@ Let $N\trianglelefteq G$, then the {\color{blue} \textbf{quotient group}}, denot
 \item By this definition, $G/ N$ is isomorphic to $Q$ (the old definition of a quotient group)
 \end{itemize}
 \end{definition}
+Some intuition about quotient groups
+\begin{itemize}
+	\item The way they make the most sense to me is thinking of them as "the result of organizing $G$ by $N$"
+	\item Each coset is a set of values that have some property relating to $N$, (namely that they're all in $g_1N$)
+	\item It then makes sense to refer to the resulting groupings of the elements as a collective, instead of by individual elements
+	\item So the quotient group is just the labels on the groupings of values based on how they behave relative to $N$
+	\item In the case of $\Z /100\Z$ the labels are based on their remainder
+	\item Note that after we mod out, we don't care about the individual elements but just the labels, the representative elements
+	\item The normal condition on the subgroup just ensures that the labels both capture all the values in $G$ and that the cosets form a group themselves
+\end{itemize}
+
+\subsection{Proof of Langrange's Theorem}
+
+\begin{theorem} 
+\textbf{Theorem:} {\color{blue} Langrange's theorem} \\
+~\\
+Let $G$ be a finite group, $H$ any subgroup. Then $|H|$ divides $|G|$
+\end{theorem}
+\begin{proof} 
+\textbf{Proof:} \\
+~\\
+All the cosets of $H$ form a partition (??) of $G$ (though not necessarily a group, since $H$ might not be normal). So if $n$ is the number of cosets, then $n\dot |H|=|G|$ (?? Why does this equal $|G|$ and not just some proportion of it?)
+\end{proof}
+\begin{remark} 
+	\textbf{Remark:} In general, for finite groups $G$ and normal subgroup $H$, $|G /N = |G| /|N|$ 
+\end{remark}
+
+\subsection{Eliminating the homomorphism}
+Recap: Quotient groups
+\begin{itemize}
+	\item The elements of the quotient group $G /N$ are cosets $gN$
+	\item The group operation is $g_1N \cdot g_2N= (g_1g_2)N$
+\end{itemize}
+Where do we use the requirement that $N$ is a normal subgroup in the quotient group definition?
+~\\
+~\\
+Answer: We don't know what $g_1$ or $g_2$ are, so we need to guarantee that the group operation's $g_1g_2$ will end up at the same coset, no matter which $g_1$ and $g_2$ are picked from those respective cosets. \textbf{The condition that $N$ must be a normal subgroup gives us this.}
+\begin{itemize}
+	\item We get this because $N$ is defined as the kernel of some homomorphism$\phi$
+	\item Why? I don't really get it... The book says it's because all values in the coset $gN$ have the same value under the homomorphism $\phi$
+\end{itemize}
+\begin{lemma} 
+\textbf{Lemma:} \\
+~\\
+For $\phi: G \to K$ is a homomorphism with $H=$ker$\phi$. If $h\in H$ and $g\in G$, then $ghg^{-1} \in H$.
+\begin{proof} 
+\textbf{Proof:} \\
+~\\
+Show that $\phi(ghg^{-1}) = 1_k$ (show that it's in the kernel, which is $H$).
+\begin{align}
+	\phi(ghg^{-1}) &= \\ 
+		       &= \phi(g) * \phi(h) * \phi(g^{-1}) \\
+		       &= \phi(g) * \phi(g^{-1}) \\
+		       &= \phi(gg^{-1}) \\
+		       &= \phi(1_G) \\
+		       &= 1_K \\
+\end{align}
+\end{proof}
+\end{lemma}
+Turns out the converse is also true
+\begin{theorem} 
+\textbf{Theorem:} {\color{blue} Algebraic condition for normal subgroups} \\
+~\\
+Let $H$ be a subgroup of $G$, then the following are equivalent 
+\begin{itemize}
+	\item $H \trianglelefteq G$
+	\item $\forall g\in G$ and $h\in H$, $ghg^{-1} \in H$
+\end{itemize}
+\begin{proof} 
+\textbf{Proof:} \\
+~\\
+The last proof showed one direction. For the other one, we need to build a homomorphism with kernel $H$. We can do this by
+\begin{itemize}
+	\item Defining the quotient group directly as the cosets, and verifying that it is valid
+	\item Let our homomorphism be the map from $G$ to our newly built quotient group
+\end{itemize}
+For the group operation we need
+\begin{claim} 
+\textbf{Claim:} \\
+~\\
+If $g_1' \sim _H g_1$ and $g_2' \sim _H g_2$, then $g_1'g_2' \sim _H g_1g_2$
+\end{claim}
+Short proof:
+\begin{itemize}
+	\item $g_1' = g_1h_1$ and $g_2'=g_2h_2$ because they're in the same respective cosets. 
+	\item $H$ has the property that $g_2^{-1}h_1g_2$ is some element of $H$, $h_3$, then multiply both sides on the left by $g_2$, leaving $h_1g_2 = g_2h_3$
+	\item So $g_1(h_1g_2)h_2 = g_1(g_2h_3)h_2 = g_1g_2(h_3h_2)$, which is $\sim _H g_1g_2$ because the $h_3h_2 \in H$  
+\end{itemize}
+This means that our group operation is consistent, no matter which element in the coset we pick, so now define the group operation to be
+\[
+	(g_1H)*(g_2H) = (g_1g_2)H
+.\] 
+So now we have our $G /H$ group, with a projection map $g \mapsto gH$, which has a kernel $H$
+\begin{itemize}
+	\item Elements of $H$ get sent to $hH$, which is just $H$, which is the identity element
+\end{itemize}
+\qed
+\end{proof}
+\end{theorem}
+\begin{example} 
+\textbf{Example:} Modding out a product group \\
+~\\
+Earlier we had the trivial subgroup of $G \times H$,
+\[
+	G' = \{(g,1_H) | g\in G\}
+.\]
+We can show that
+\begin{itemize}
+	\item $G' \trianglelefteq G \times H$
+	\begin{itemize}
+		\item Just need to show the $ghg^{-1} \in G'$ condition forall $g\in G\times H$ and $h\in G'$
+	\end{itemize}
+	\item Also that $(G\times H) /G' \cong H$
+	\begin{itemize}
+		\item Intuition: The different cosets are entirely dependent on the $h$ value in the $(g,h)$ pairs that represent the cosets. ie each $h$ gets it's own coset, with all the values of $g$
+		\item $(g,h) \sim _{G'} (1_G,h)$ for any $g,h$
+	\end{itemize}
+\end{itemize}
+\end{example}
+\begin{remark} 
+\textbf{Remark:} Suppose $G$ is abelian. Then all subgroups of $G$ are normal.
+\begin{proof} 
+\textbf{Proof:} \\
+~\\
+It's really easy to show the $ghg^{-1} \in H$ condition because we can just reorder it to $gg^{-1}h = 1_Gh = h$, which is in $H$ by definition
+\end{proof}
+\end{remark}
 \end{document}
+
