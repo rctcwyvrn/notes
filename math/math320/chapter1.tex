@@ -1,0 +1,149 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{framed}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{braket}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+
+\newcommand{\qed}{\null\nobreak\hfill\ensuremath{\square}}
+
+\definecolor{mycolor}{rgb}{0.122, 0.435, 0.698}
+\definecolor{exampleBorder}{rgb}{0.8, 0.58, 0.46}
+\definecolor{propBorder}{rgb}{0.0, 0.5, 0.0}
+\definecolor{theoremBorder}{rgb}{0.2, 0.2, 0.6}
+\definecolor{proofBorder}{rgb}{1.0, 0.44, 0.37}
+\definecolor{rmkBorder}{rgb}{0.75, 0.58, 0.89}
+\definecolor{claimBorder}{rgb}{0.0, 0.42, 0.24}
+\definecolor{lemmaBorder}{rgb}{0.4, 0.6, 0.8}
+
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=mycolor,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{definition}
+\newmdenv[leftmargin=1pt, rightmargin=1pt, nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=exampleBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{example}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=propBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{prop}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=theoremBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{theorem}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=proofBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{proof}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=rmkBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{remark}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=claimBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{claim}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=lemmaBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{lemma}
+
+\title{Math 320: Chapter 1}
+\author{rctcwyvrn}
+\date{September 2020}
+
+\begin{document}
+
+\maketitle
+
+\section{Common sets}
+\begin{itemize}
+	\item Natural numbers $\N$ (Rudin uses $\mathbb{J}$)
+		\begin{itemize}
+			\item Set notation $\left\{ 1, 2, 3, 4, \ldots\right\}$
+			\item Closed under addition and multiplication
+			\item Not closed under subtraction (might get a negative number)
+		\end{itemize}
+	\item Integers $\Z$
+		\begin{itemize}
+			\item Set notation $\ldots -3, -2, -1, 0,1,2,3,4,\ldots$
+			\item Closed under subtraction and addition
+			\item But not under division
+		\end{itemize}
+	\item Rationals $\Q$
+		\begin{itemize}
+			\item Set notation: $\left\{\frac{m}{n}: m\in\Z, n\in \N \right\}$
+			\begin{itemize}
+				\item Where $\frac{m_1}{n_1} = \frac{m_2}{n_2}$ iff $m_1*n_2 = m_2*n_1$
+				\item Our intuitive idea of division
+			\end{itemize}
+		\item Alternative we could define $\Q$ in a more straightforward way
+			\begin{itemize}
+				\item Define $\Q$ as the set of ordered pairs $\left\{(m,n): m\in\Z, n\in \N  \right\}$
+				\item We also need to make sure the equivalent fractions are accounted for
+				\item where $(m_1,n_1)$ is equivalent to $(m_2,n_2)$ (ie $(m_1,n_1) \sim (m_2,n_2)$) if $m_1n_2 = m_2n_1$
+			\end{itemize}
+		\item Closed under addition, subtraction, multiplication, and division (if divisor is non-zero)
+		\item Question: Are the rationals sufficient for everything we want to do in real analysis (in calculus)?
+		\begin{itemize}
+			\item Can we do things in calculus? 
+			\item Can we take limits? (and have them work properly?)
+		\end{itemize}
+		\item Nope! (note: the name of this course is \textbf{real} analysis, not \textbf{rational} analysis
+		\item The problem is that the rationals have holes, they're not "filled in all the way" like the reals are
+	\end{itemize}
+\end{itemize}
+\begin{example} 
+		\textbf{Example:} Holes \\
+		~\\
+		(Rudin 1.1a)  We want to show that there's a number we can't reach in the rationals ($\sqrt{2}$). $\nexists p\in\Q : p^2=2$  
+		\begin{proof} 
+		\textbf{Proof:} \\
+		~\\
+		By contradiction: Suppose that $\exists p\in\Q : p^2=2$. Then since $p$ is rational, we can write $p = \frac{m}{n}$, $m\in\Z$, $n\in\N$.
+		\begin{itemize}
+			\item WLOG we may suppose that $m$ and $n$ are not both even (because if not then we could just divide both by 2 and have a new $m$ and $n$ and repeat until this statement is true)
+			\begin{itemize}
+				\item Q: How can we be sure that this dividing by 2 will eventually end? (More explicitly, how many times do we need to do it?)
+			\end{itemize}
+			\item We have $2 = p^2 = \frac{m^2}{n^2}$
+			\begin{align}
+				2 &= \frac{m^2}{n^2} \\
+				m^2 &= 2n^2
+			\end{align}
+		\item So $m$ must be even
+		\item Ie $m = 2k$ for some odd integer $k$
+		\begin{align}
+			2n^2 &= m^2 \\
+			2n^2 &= (2k)^2 \\
+			n^2 &= 2k^2 
+		\end{align}
+		\item So $n$ must be even, but we said that one of them had to be odd.
+		\item Contradiction!
+		\end{itemize}
+		\end{proof}
+	\end{example}
+	\begin{example} \textbf{Example:} \\
+		\\
+		(Rudin 1.1b) 
+		\begin{itemize}
+			\item Let $A = \left\{ p\in\Q: p>0, p^2<2\right\}$
+			\item Let $B = \left\{ p\in\Q : p>0, p^2>2\right\}$
+			\item Consider the area where the two sets meet. We know that they meet at $\sqrt{2}$, which is not a rational. 
+			\item So we know that the set of rationals has little holes in it, like $\sqrt{2}$ which make us unable to use limits, which are important for real analysis 
+		\end{itemize}
+		Then:
+		\begin{itemize}
+			\item $\forall p\in A, \exists q\in A: p<q$ (A does not have a largest element)
+			\item Similarly $B$ does not have a smallest element ($\forall p\in B, \exists q\in B: q<p$
+		\end{itemize}
+		\begin{proof} 
+		\textbf{Proof:} \\
+		~\\
+		First one
+		\begin{itemize}
+			\item Consider arbitrary $p\in A$. Try $q = \frac{2p+2}{2+p}$ 
+			\item Check $q\in\Q$, the denominator is non-zero and rational, so the result is rational.
+			\item Check $q>0$, both numerator and denominator are positive
+			\item Check $q^2<2$.
+			\begin{align}
+				q^2 &= \frac{(2p+2)^2}{(2+p)^2} \\
+				    &= \frac{2(p^2-2)}{(p+2)^2} +2
+			\end{align}
+			\item The fraction is less than zero, because the numerator is negative ($p^2 <2$ because $p\in A$), so $q^2<2)$
+			\item Check that $p<q$. Well $q = p + \frac{2-p^2}{2+p}$, which is positive, so $q>p$
+		\end{itemize}
+		Second one
+		\begin{itemize}
+			\item Exercise (Try the exact same choice of $q$)
+		\end{itemize}
+		\end{proof}
+	\item Q: Where did that $q$ come from? (Think calculus)
+	\item Q: Why do we care so much that there is $q^2=2$, but don't care that there isn't a $q^2 = -1$?
+\end{example}
+\end{document}
