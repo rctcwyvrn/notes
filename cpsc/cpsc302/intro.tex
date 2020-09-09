@@ -1,0 +1,89 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{framed}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{braket}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\qed}{\null\nobreak\hfill\ensuremath{\square}}
+
+\definecolor{mycolor}{rgb}{0.122, 0.435, 0.698}
+\definecolor{exampleBorder}{rgb}{0.8, 0.58, 0.46}
+\definecolor{propBorder}{rgb}{0.0, 0.5, 0.0}
+\definecolor{theoremBorder}{rgb}{0.2, 0.2, 0.6}
+\definecolor{proofBorder}{rgb}{1.0, 0.44, 0.37}
+\definecolor{rmkBorder}{rgb}{0.75, 0.58, 0.89}
+\definecolor{claimBorder}{rgb}{0.0, 0.42, 0.24}
+\definecolor{lemmaBorder}{rgb}{0.4, 0.6, 0.8}
+
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=mycolor,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{definition}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=exampleBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{example}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=propBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{prop}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=theoremBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{theorem}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=proofBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{proof}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=rmkBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{remark}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=claimBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{claim}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=lemmaBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{lemma}
+
+\title{Introduction}
+\author{rctcwyvrn }
+\date{August 2020}
+
+\begin{document}
+\maketitle
+\section{Introductions}
+\subsection{Errata}
+\begin{itemize}
+	\item Lectures are recorded and posted after class (you can earn bonus points for participating live though)
+	\item Slides are also posted afterwards
+	\item Communication
+	\begin{enumerate}
+		\item Start with piazza
+		\item TAs have zoom office hours
+		\item Canvas conversations/inbox thingy
+	\end{enumerate}
+\end{itemize}
+\subsection{Course intro}
+\begin{enumerate}
+	\item What are numerical algorithms
+	\item Work with floating point systems
+	\item Improve algorithms
+	\item Balance trade offs (accuracy, efficiency, robustness)
+	\item Use iterative methods for linear systems
+\end{enumerate}
+Try to solve $f(x) = b$ numerically for some $b$ \\
+~\\
+Course material
+\begin{itemize}
+	\item Textbook: A first course in numerical methods
+	\item Code: MATLAB
+\end{itemize}
+~\\
+Flex points
+\begin{itemize}
+	\item You can adjust the weighting of the grading scheme (to improve grades) 
+	\item Get them from answering clicker questions and questions on piazza
+	\item Completing in class activities
+\end{itemize}
+~\\
+Assignments
+\begin{itemize}
+	\item Submit the matlab live script and a pdf export
+	\item 7 assignments, one every 2-3 weeks
+	\item Lowest one is dropped
+	\item Gradescope 
+\end{itemize}
+~\\
+Lectures
+\begin{enumerate}
+	\item Q/A on piazza questions
+	\item Individual/small group worksheets
+	\item Assignments when they're soon due
+\end{enumerate}
+\end{document}

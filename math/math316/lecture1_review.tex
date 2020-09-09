@@ -1,0 +1,201 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{framed}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{braket}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\qed}{\null\nobreak\hfill\ensuremath{\square}}
+
+\definecolor{mycolor}{rgb}{0.122, 0.435, 0.698}
+\definecolor{exampleBorder}{rgb}{0.8, 0.58, 0.46}
+\definecolor{propBorder}{rgb}{0.0, 0.5, 0.0}
+\definecolor{theoremBorder}{rgb}{0.2, 0.2, 0.6}
+\definecolor{proofBorder}{rgb}{1.0, 0.44, 0.37}
+\definecolor{rmkBorder}{rgb}{0.75, 0.58, 0.89}
+\definecolor{claimBorder}{rgb}{0.0, 0.42, 0.24}
+\definecolor{lemmaBorder}{rgb}{0.4, 0.6, 0.8}
+
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=mycolor,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{definition}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=exampleBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{example}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=propBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{prop}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=theoremBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{theorem}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=proofBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{proof}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=rmkBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{remark}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=claimBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{claim}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=lemmaBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{lemma}
+
+\title{Lecture 1: A review of ODE techniques}
+\author{rctcwyvrn }
+\date{August 2020}
+
+\begin{document}
+
+\maketitle
+
+
+\section{Introduction}
+
+What is a differential equation? \\
+A differential equation is an equation that implicitly defines a function by giving a relationship between it and its derivatives
+
+\begin{definition} 
+\textbf{Definition:} ODE \\
+~\\
+An ordinary $n$th order differential equation is \[
+f(x, y(x), y'(x) \ldots y^{(n)}(x)) = 0 
+.\]
+A solution is a function $y(x)$
+\end{definition}
+\begin{definition} 
+\textbf{Definition:} Partial differential equation \\
+~\\
+The most general 2nd order PDE is \[
+	f(x,y, u(x,y), u_x, u_y, u_{x x}, u_{yy}
+.\] 
+A solution is a surface $z =u(x,y)$
+\end{definition}
+
+Types of equations 
+\begin{enumerate}
+	\item First order equations
+	\begin{enumerate}
+		\item Separable $\frac{dy}{dx} = P(x)Q(y)$
+		\item Linear $\frac{dy}{dx} + P(x)y = Q(x)$
+	\end{enumerate}
+	\item Second order equations
+	\begin{enumerate}
+		\item Constant coefficient $Ly = ay''+ by' + cy = 0$ constants $a,b,c$
+		\item Cauchy-Euler (Equidimensional equations) $Ly = x^2y'' + axy' + by = 0$
+	\end{enumerate}
+\end{enumerate}
+\section{First order equations}
+\subsection{Separable equations}
+\[
+	\frac{dy}{dx} = P(x)Q(y)
+.\] 
+We can separate the variables and rewrite it as 
+\[
+	\int \frac{dy}{Q(y)} = \int P(x)dx
+.\] 
+and then integrate as usual
+\subsection{Linear equations}
+\[
+	Ly = \frac{dy}{dx} + P(x)y = Q(x)
+.\] 
+Not separable because of the $P(x)y$
+\begin{itemize}
+	\item Recall the product rule $\frac{d}{dx} (F(x)y) = F \frac{dy}{dx} + F'y$
+	\item We can now multiply the ODE by a function $F$ to get it to match the product rule. ie $F' = F  P(x)$, which is a separable equation.
+	\[
+		\ln(F) = \int P(x) dx + C
+	.\]
+\item We get that $F = e^{\int P(x) dx + c} = Ae^{\int P(x) dx}$. Call it the \textbf{integrating factor}
+\end{itemize}
+So now multiply everything by the integrating factor
+\begin{align}
+	FLy &= Ae^{\int P(x)dx} \frac{dy}{dx} + A e^{\int P(x) dx} P(x) y = Ae^{\int P(x)dx} \\
+	\intertext{Divide out all the As and integrate the product}
+	    &= \frac{d}{dx}(e^{\int P dx}y) = e^{\int P dx}Q(x)
+\end{align}
+Now the equation is separated, so just integrate again and you get the solution (it's gross so I'm not going to write it all out and it's stupid to try and memorize it anyway)
+\section{Second order constant coefficient linear ODEs}
+\[
+Ly = ay'' + by' + cy = 0 
+.\] 
+What is $L$? $L$ is a differential operator $L = a \frac{d^2}{dx} + b \frac{d}{dx} + c$
+Q: What function has a derivative that differs by a constant? ie $y' = \lambda y$
+A: Solve it as a first order linear ODE. 
+\begin{align}
+	y' -\lambda y &= 0 \\
+	e^{-\lambda x}y' -\lambda e^{-\lambda x}y &= 0 \\
+	e^{-\lambda x}y &= C \\
+	y &= Ce^{\lambda x} 
+\end{align}
+Knowing this, let's guess a solution $y(x,r) = e^{rx}$ ($r$ is a parameter which makes $y(x)$ a solution
+\[
+	Ly = (ar^2 + br + c)e^{rx} = 0
+.\]
+So now for this to work, the polynomial must be $0$. Solve $\phi(r) = ar^2+br+c = 0$, use the quadratic formula
+Cases:
+\begin{enumerate}
+	\item Two distinct real roots $r_1, r_2$, which each has a corresponding solution. We know that the addition of any two solutions and the multiplication of a solution by a constant still makes a solution, so the general solution is \[
+			y(x) = Ae^{r_1x} + Be^{r_2x}
+	.\] 
+\item One root $r$. It's pretty straightforward to check that in this case, we have a second solution $y = xe^{rx}$ \[
+			y(x) = Ae^{rx} + Bxe^{rx}
+	.\] 
+\item Two complex roots $c_1,c_2$, we can rewrite them as $\lambda \pm i\mu$. So the general solution is 
+\begin{align}
+	y(x) &= Ae^{(\lambda +i\mu)x} + Be^{(\lambda - i\mu) x} \\
+	     &= e^{\lambda x }\left[ Ae^{i\mu x } + Be^{-i\mu x} \right] \\
+	     &= e^{\lambda x} \left[ A(\cos(\mu x) +i\sin(\mu x)) + B(\cos(\mu x) -i\sin(\mu x)) \right] \\ 
+	     &= e^{\lambda x} \left[ (A+B)\cos(\mu x) + i(A-B)\sin(\mu x)\right] \\
+	     &= e^{\lambda x} \left[ C\cos(\mu x) + iD\sin(\mu x)\right]
+\end{align}
+
+\end{enumerate}
+\section{Cauchy-Euler/Equidimensional equations}
+\[
+Ly = x^2y'' + axy' + by = 0
+.\] 
+Why is it called equidimensional? Because each term in the differential equation has the same units (the units of y) \\
+
+Look for $y: x \frac{dy}{dx} = ry$, that's separable, so solve it
+\begin{align}
+	\int \frac{1}{y} dy &= r \int \frac{1}{x} dx \\
+	\ln y &= r \ln x + c \\
+	y &= x^r + C
+\end{align}
+Guess that this will be a nice solution, find $r$ st $y(x,r) = x^r$ is a solution.
+\begin{align}
+	y' &= rx^{r-1} \\
+	y'' &= r(r-1)x^{r-2}
+\end{align}
+Plug into $Ly$
+\begin{align}
+	Ly &= (r(r-1) + ar + b) x^r \\
+\end{align}
+That's a solution if the polynomial is $= 0$
+\begin{align}
+	r(r-1) + ar + b &= 0 \\
+	r^2 + (a-1)r + b &= 0 \\
+	r_1, r_2 &= -\frac{a-1}{2} \pm \frac{\sqrt{(a-1)^2 - 4b}}{2} 
+\end{align}
+Cases
+\begin{enumerate}
+	\item 2 distinct real roots. General solution is \[
+			y(x) = Ax^{r_1} + Bx^{r_2}
+	.\] 
+\item One double root $r_0 = -\frac{a-1}{2}$. (discriminant $= 0$)
+	\begin{align}
+		Ly &= (r(r-1) + ar + b)x^r \\
+		   &= ((r+\frac{a-1}{2})^2 - \frac{(a-1)^2 - 4b}{4})x^r \\
+		   \intertext{The numerator is just the discriminant, so}
+		   &= (r - (-\frac{a-1}{2}))^2x^r \\
+		   &= (r-r_0)^2x^r \\
+		   \intertext{Now do some black magic and derive wrt $r$}
+		\frac{d}{dr} Ly &= 2(r-r_0)x^r + (r-r_0)^2(\ln(x) x^r) \\
+		\intertext{We see that $r=r_0$ gives us a solution (??)}
+		\frac{d}{dr} y(x,r) |_{r=r_0} = x^{r_0}\ln x 
+	\end{align}
+	??? Well that's apparently the other solution. So the general solution is
+	\[
+		y(x) = Ax^r_0 + Bx^r_0 \ln x
+	.\]
+\item Discriminant $< 0$, complex pair $\lambda \pm i\mu$
+	\begin{align}
+		y(x) &= c_1x^{\lambda +i\mu} + c_2x^{\lambda-i\mu} \\
+		     &= x^\lambda \left[ c_1e^{i\mu\ln x} + c_2e^{-i\mu\ln x}\right] \\
+		     \intertext{Use Euler's formula and group terms}
+		     &= x^\lambda\left[ (c_1+c_2) \cos(\mu\ln x) + i(c_1-c_2)\sin(\mu\ln x) \right] \\
+                     &= x^\lambda\left[ A \cos(\mu\ln x) + B\sin(\mu\ln x) \right]
+	\end{align}
+\end{enumerate}
+\end{document}

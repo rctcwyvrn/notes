@@ -8,4 +8,4 @@ cp ~/.vim/spell/en.utf-8.add dotfiles
 
 git add -A
 git commit -m "Update notes"
-git push
+#git push
