@@ -146,4 +146,87 @@
 	\item Q: Where did that $q$ come from? (Think calculus)
 	\item Q: Why do we care so much that there is $q^2=2$, but don't care that there isn't a $q^2 = -1$?
 \end{example}
+\subsection{Ordered Sets}
+\begin{definition} 
+\textbf{Definition:} Set order \\
+~\\
+An {\color{blue} \textbf{order ($<$)}} on a set $S$ is a relation st
+\begin{itemize}
+	\item Every pair of distinct elements $x,y\in S$, exactly one of $x<y$, $x>y$, $x=y$ is true
+	\item Transitivity: For $x,y,z\in S$, $x<y$ $y<z$ implies $x<z$
+\end{itemize}
+\end{definition}
+\begin{definition} 
+\textbf{Definition:} Ordered set \\
+~\\
+A pair $(S,<)$ of an order and a set (duh)
+\begin{itemize}
+	\item Notation: Just $S$ if the order is obvious from the context
+\end{itemize}
+\end{definition}
+\begin{example} 
+\textbf{Example:} Ordered sets \\
+~\\
+With ordering $x<y$ if $y-x$ is positive
+\begin{itemize}
+	\item $S = \N$
+	\item $S = \Z$
+	\item $\Q$, $\R$ etc
+\end{itemize}
+\end{example}
+\begin{example} 
+\textbf{Example:} English set \\
+~\\
+$S$ as the set of English words, $<$ is the dictionary order (by letters)
+\begin{itemize}
+	\item "a" $<$ "aa" $<$ "ab" $<$ "b"
+\end{itemize}
+\end{example}
+Notation:
+\begin{itemize}
+	\item $x<y$ and $y>x$ are the same
+	\item $x\le y$ means $x<y$ or $x=y$
+\end{itemize}
+\begin{definition} 
+\textbf{Definition:} Bounded above \\
+~\\
+Let $S$ be an ordered set and $E$ be a subset of $S$ ($E\subset S$) \\
+~\\
+We say $E$ is {\color{blue} \textbf{bounded above}} if there exists an element $\theta\in S: \forall x\in E: x\le\theta$ \\ 
+~\\
+$\theta$ is an {\color{blue} \textbf{upper bound(ub)}} of $E$
+\begin{itemize}
+	\item Note: This requires a "universal bounding set" or else the idea of being bounded above doesn't make sense
+\end{itemize}
+\end{definition}
+\begin{example} 
+\textbf{Example:}  \\
+~\\
+Let $S = \Q$ with the standard ordering. Let $E=A$ (from the last section, $0<a$, $a^2<2$)
+\begin{itemize}
+	\item Then $E$ is bounded above by $p=2$ (or really any element $p>\sqrt{2}$) 
+\end{itemize}
+For $p\in E$, check $2-p$
+\begin{align}
+	2-p &= \frac{4-p^2}{(2+p)} \\
+	    &> \frac{4-2}{2+p} \\
+	    &>0
+\end{align}
+\end{example}
+\begin{example} 
+\textbf{Example:}  \\
+~\\
+Let $S=A$ and $E=A$ (not a proper subset), in this case $E$ is not bounded above
+\begin{itemize}
+	\item We know that for any element $\theta\in E$ there exists another element in $E$ that is larger (from last lecture)
+\end{itemize}
+\end{example}
+\begin{definition} 
+\textbf{Definition:} Bounded below \\
+~\\
+Let $S$ be an ordered set, $E\subset S$. $E$ is {\color{blue} \textbf{bounded below}} if $\exists \beta\in S: \forall x\in E: \beta \le  x$
+\begin{itemize}
+	\item $\beta$ is called a {\color{blue} \textbf{lower bound (lb)}}
+\end{itemize}
+\end{definition}
 \end{document}
