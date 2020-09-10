@@ -1,0 +1,116 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{framed}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{braket}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\qed}{\null\nobreak\hfill\ensuremath{\square}}
+
+\definecolor{defBorder}{rgb}{0.122, 0.435, 0.698}
+\definecolor{exampleBorder}{rgb}{0.8, 0.58, 0.46}
+\definecolor{propBorder}{rgb}{0.0, 0.5, 0.0}
+\definecolor{theoremBorder}{rgb}{0.2, 0.2, 0.6}
+\definecolor{proofBorder}{rgb}{1.0, 0.44, 0.37}
+\definecolor{rmkBorder}{rgb}{0.75, 0.58, 0.89}
+\definecolor{claimBorder}{rgb}{0.0, 0.42, 0.24}
+\definecolor{lemmaBorder}{rgb}{0.4, 0.6, 0.8}
+
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=defBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{definition}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=exampleBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{example}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=propBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{prop}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=theoremBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{theorem}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=proofBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{proof}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=rmkBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{remark}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=claimBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{claim}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=lemmaBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{lemma}
+
+\title{Math 322}
+\author{rctcwyvrn}
+\date{August 2020}
+\begin{document}
+\maketitle
+
+\section{Lecture 1}
+insert notes about partitions and equivalence relations that i missed (the set just gets sorted into partitions where everything in one partition is equivalent to the others in the partition) \\
+~\\
+
+\begin{definition} 
+\textbf{Definition:} Equivalence classes \\
+~\\
+Given a partition $\left\{X_i\right\}$ of $X$, you can form a new set whose elements are the sets $X_0, X_1, X_2 \ldots$. This is called $X/ \sim$. \\
+~\\ 
+Elements of that set are {\color{blue} \textbf{equivalence classes}}
+\begin{itemize}
+	\item If $\alpha\in X_i$ then $\alpha$ is called a {\color{blue} \textbf{representative}} of the equivalence class $X_i$
+	\item Notation: $X_i = \left[\alpha\right] = \overline{\alpha}$
+	\item We can also define a {\color{blue} \textbf{projection}} from $X$ to $X /\sim$, which sends $\alpha$ to its equivalence class
+\end{itemize}
+\begin{align}
+	\pi: X &\to X /\sim \\
+           \alpha &\mapsto \left[\alpha\right]
+\end{align}
+\begin{itemize}
+	\item Sends all the elements of a partition into the one equivalence class
+\end{itemize}
+\end{definition}
+\begin{example} 
+\textbf{Example:} Odds and evens \\
+~\\
+Let $X$ be the integers, with the partition $X_1$ evens, $X_2$ odds then $X /\sim$ is the two element set. ~\\
+~\\
+Note: Even though both the odds and the evens have infinite size, the quotient set has only two elements
+\end{example}
+\begin{example} 
+\textbf{Example:} Integers mod $N$ \\
+~\\
+Define $x \sim y$ if they have the same remainder mod $N$.
+\begin{itemize}
+	\item $N$ equivalence classes (one for each remainder, $0\ldots N-1$)
+	\item Notation: $\Z /N\Z$ (reason later (quotient groups)
+	\item If $N=2$ then it's just the evens and odds example from before
+	\item If $N=7$ then there's $7$ elements, \\
+		the equivalence classes for $0,1,2,3,4,5,6$
+\end{itemize}
+\end{example}
+Division of integers (in $\Z$) (Some stuff very closely related to math 312, which we aren't going to prove)
+\begin{itemize}
+	\item Let $a,b$ integers , $a>0$
+	\item Then we have $b= qa+r$, $0 <r\le a-1$, $q$ integer
+	\item Note: the quotient and remainder are unique
+	\item $a|b \iff r=0$ divisible iff the remainder is zero 
+	\item We get that any integer $n$ is unique defined by the primes that make it up
+\end{itemize}
+\begin{lemma} 
+\textbf{Lemma:} \\
+~\\
+If $a,b$ have no common factors, then $\exists m,n \in\Z : ma+mb=1$
+\begin{itemize}
+	\item Notation: $(a,b)$: greatest common factor
+	\item Notation: $\left[a,b\right]$: least common multiple
+\end{itemize}
+\end{lemma}
+\begin{example} 
+\textbf{Example:}  \\
+~\\
+$7,5$ share no common factors, $m=-2$, $n=3$, $-14 + 15 = 1$
+\end{example}
+\begin{remark} 
+\textbf{Remark:}  Division turns out to generate the basic structural properties of $\Z$
+\end{remark}
+\begin{lemma} 
+\textbf{Lemma:} \\
+~\\
+Suppose now that $a,b$ share a gcd $d$, then $\exists m,n\inZ: ma+mb=d$. So the earlier lemma is just a special case (when the gcd is 1)
+\begin{itemize}
+	\item Note: because $d$ divides both $a$ and $b$, then it should be able to divide $ma+nb$ for any $m,n$
+\end{itemize}
+\end{lemma}
+\end{document}
