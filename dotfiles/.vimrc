@@ -53,4 +53,6 @@ inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 
 set rtp+=~/notes/current-course
 
-set visualbell
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * setvisualbell t_vb=
+
