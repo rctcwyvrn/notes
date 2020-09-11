@@ -1,0 +1,109 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{framed}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{braket}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+
+\newcommand{\qed}{\null\nobreak\hfill\ensuremath{\square}}
+
+\definecolor{mycolor}{rgb}{0.122, 0.435, 0.698}
+\definecolor{exampleBorder}{rgb}{0.8, 0.58, 0.46}
+\definecolor{propBorder}{rgb}{0.0, 0.5, 0.0}
+\definecolor{theoremBorder}{rgb}{0.2, 0.2, 0.6}
+\definecolor{proofBorder}{rgb}{1.0, 0.44, 0.37}
+\definecolor{rmkBorder}{rgb}{0.75, 0.58, 0.89}
+\definecolor{claimBorder}{rgb}{0.0, 0.42, 0.24}
+\definecolor{lemmaBorder}{rgb}{0.4, 0.6, 0.8}
+
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=mycolor,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{definition}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=exampleBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{example}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=propBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{prop}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=theoremBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{theorem}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=proofBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{proof}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=rmkBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{remark}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=claimBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{claim}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=lemmaBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{lemma}
+
+\title{Discussion 1: 11/09/2020}
+\author{rctcwyvrn}
+\date{August 2020}
+
+\begin{document}
+
+\maketitle
+
+
+\section{Discussion stuffs}
+Misc:
+\begin{itemize}
+	\item The idea of LUB only makes sense if we assume that there already is a lower bound
+	\item The idea of upper and lower bounds come naturally from having an ordering
+	\item Usually there are many many upper/lower bounds (GLB and LUB are interesting)
+	\begin{itemize}
+		\item For example that set $A$, which had an upper bound but no LUB (which motivates us extending it into the reals, which would give us a LUB $\sqrt{2}$) 
+	\end{itemize}
+	\item Note that the suprenum/infenum is not necessarily in/not in the set itself, though if it isn't we have this intuition that it's "really close" to the set itself
+	\item All bounded sets of integers have a LUB and GLB, but we can make bounded sets of rationals that have neither
+\end{itemize}
+\bigskip
+\hrule
+\bigskip
+~\\
+Q: For that set $A = \left\{ p\in\Q: p^2<2\right\}$, we proved the statement that for each element of $p$ there is a $q\in A: p<q$. How did we choose that $q=\frac{2p+2}{p+2}$? \\
+~\\
+A: We want to choose a $q$ that is definitely larger than $p$, but also it's square is less than $2$, so we can do that by drawing some lines (see notebook)
+\begin{itemize}
+	\item How do we know that the intersection $q$ will be rational? We choose our horizontal line to be $y=2$, so the intersection should be rational (?) (alternatively, just do the arithmetic and it turns out that it's rational)
+\end{itemize}
+\bigskip
+\hrule
+\bigskip
+~\\
+Q: Why do we care so much that the rationals don't have a solution for $x^2=2$ (the irrationals), but not that the reals don't have a solution for $x^2=-1$ (the complex)? ~\\
+~\\
+A: It's a hole vs just a missing section. The rationals pose a problem because the rationals can get arbitrary close to but not reach $\sqrt{2}$, while the reals can't get anywhere near $i$, so the fact that you can't doesn't really matter 
+\bigskip
+\hrule
+\bigskip
+~\\
+Q: How do we define order for the rationals when we define the rationals as a pair $(a,b)$?~\\
+~\\
+A: We normally define $\frac{m}{n} < \frac{a}{b}$ if $mb < na$. Then you need to check symmetry, transitivity, and that it holds for the equivalence class of those fractions
+\bigskip
+\hrule
+\bigskip 
+~ \\
+Q: Can we possibly order $\R^2$? \\
+~\\
+A: Transitivity fails unfortunately, so no
+\bigskip
+\hrule
+\bigskip ~\\
+Q: Are all subsets $E\subset S$ bounded above? \\
+~\\
+A: Well of course not, $E = [-,\infty)$ is a subset of $\R$ and is not bounded above
+\bigskip
+\hrule
+\bigskip ~\\
+Q: What is the infenum (greatest lower bound) of $\left\{ \frac{1}{n} : n\in\N\right\}$ \\
+~\\
+A: $0$. To prove it you need to check
+\begin{itemize}
+	\item It's a lower bound (obvious)
+	\item Prove that any value larger than $0$ is not a lower bound
+	\begin{itemize}
+		\item Pick $x>0$
+		\item Fit a $\frac{1}{n_0}$ between $0$ and $x$ (should be straightforward, maybe draw a graph to help)
+	\end{itemize}
+\end{itemize}
+\end{document}
+
