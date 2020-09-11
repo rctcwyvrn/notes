@@ -231,7 +231,7 @@ Let $S$ be an ordered set, $E\subset S$. $E$ is {\color{blue} \textbf{bounded be
 \end{definition}
 \subsection{Least upper bounds and greatest lower bounds}
 \begin{definition} 
-	\textbf{Definition:} Least upper bound(LUB)\\
+	\textbf{Definition:} Least upper bound (LUB)\\
 ~\\
 Let $S$ be an ordered set, subset $E$ bounded above. If $\exists\alpha\in S$ such that 
 \begin{itemize}
@@ -239,5 +239,111 @@ Let $S$ be an ordered set, subset $E$ bounded above. If $\exists\alpha\in S$ suc
 	\item If $\gamma < \alpha$, then $\gamma$ is NOT a UB for $E$
 \end{itemize}
 Then $\alpha$ is called the {\color{blue} \textbf{least upper bound (LUB)}} or {\color{blue} \textbf{supremum}}
+\begin{itemize}
+	\item Notation: $\alpha = sup(E)$
+\end{itemize}
 \end{definition}
+\begin{remark} 
+\textbf{Remark:} Why can we say that $\alpha$ is THE supremum? How do we know that it's unique?
+\end{remark}
+\begin{definition} 
+	\textbf{Definition:} Greatest lower bound (GLB) \\
+~\\
+Similarly the {\color{blue} \textbf{greatest lower bound}} or {\color{blue} \textbf{infenum}} is the element $\alpha$ (if it exists) st 
+\begin{itemize}
+	\item $\alpha$ is a LB for $E$
+	\item $\gamma > \alpha$ then gamma is not a LB for $E$
+	\item Notation: $\alpha = inf(E)$
+\end{itemize}
+\end{definition}
+\begin{example} 
+\textbf{Example:}  \\
+~\\
+Let $S=\Q$ with the normal ordering. $E = \left\{\frac{1}{n}: n\in\N\right\}$
+\begin{itemize}
+	\item What is the supremum? $sup(E) = 1$
+	\item What is the infenum? $inf(E) = 0$
+\end{itemize}
+Things to check:
+\begin{itemize}
+	\item Are they rational (in the universal set $S$)? Well yes
+	\item Are they a UB/LB? Yes
+	\item The hard part: Prove that they are the greatest/least lower/upper bound (todo)
+\end{itemize}
+Note:
+\begin{itemize}
+	\item $E$ contains its supremum, but not its infenum
+\end{itemize}
+\end{example}
+\begin{definition} 
+	\textbf{Definition:} Least upper bound property (LUB property) \\
+~\\
+An ordered set $S$ has the LUB property if $\forall E\subset S$ where $E$ is not the empty set, and $E$ is bounded above, then $E$ has a least upper bound (in $S$)
+\begin{itemize}
+	\item All subsets of $S$ that are bounded above, have a LUB
+\end{itemize}
+There is also a parallel definition for the {\color{blue} \textbf{greatest upper bound property}}.
+\end{definition}
+\begin{example} 
+\textbf{Example:}  \\
+~\\
+Does $\Z$ have the LUB property? \\
+~\\
+What about $\Q$? \\
+\begin{itemize}
+	\item How would you go about proving it?
+	\begin{itemize}
+		\item Not having the statement is more straightforward because you can just find a counter-example
+		\item Considering arbitrary subsets is more difficult
+	\end{itemize}
+\end{itemize}
+\begin{enumerate}
+	\item I think the answers are yes and no.
+\end{enumerate}
+\end{example}
+\begin{theorem} 
+\textbf{Theorem:} {\color{blue} } \\
+~\\
+(Rudin 1.11) Let $S$ be an ordered set.
+\begin{itemize}
+	\item $S$ has the LUB property $\iff$ $S$ has the GLB property
+\end{itemize}
+\end{theorem}
+\begin{proof} 
+\textbf{Proof:} \\
+\hrule
+\bigskip
+Forward: \\
+~\\
+Let $S$ be an ordered set with the LUB property. (WTS $S$ has the GLB property). ~\\
+~\\
+Let $E\subset S$ with $E$ nonempty and bounded below (assumptions for the GLB property) (wts $E$ has an infenum) \\
+~\\
+Let $L = \{x\in S: $ x is a LB for $E \}$. $L$ is non-empty because $E$ is bounded below \\
+~\\
+If $y\in E$, then $y$ is an UB for $L$. (Because all elements of $L$ are less than all elements of $E$). Since $E$ is non-empty, $L$ is bounded above. ~\\
+~\\
+So now we have set $L\subset S$ that is non-empty and bounded above, because $S$ has the LUB property, $L$ has supremum $\alpha$. Claim that this $\alpha$ is the infenum of $E$. \\
+~\\
+$\alpha \le x : \forall x\in E$, hence $\alpha$ is a lower bound for $E$, so $\alpha$ is an element of $L$ (why?) \\
+\begin{itemize}
+	\item $\forall \gamma\in S$, $\gamma < \alpha$ implies $\gamma$ is not an upper bound of $L$. 
+	\item Since all values in $E$ are upper bounds of $L$, $\gamma\notin E$.
+	\item So since being less than $\alpha$ implies it is not in $E$, it follows that $\forall x\in E: \alpha \le x$
+\end{itemize}
+~\\
+Since $\alpha$ is the supremum of $L$, $\alpha \ge \gamma: \forall \gamma\in L$. Since $L$ is the set of all upper bounds of $E$, we get that $\alpha$ is the greatest lower bound of $E$ \\
+\qed
+\bigskip
+\hrule
+\bigskip
+Backward: (exercise, should be very similar)
+\end{proof}
+\begin{remark} 
+\textbf{Remark:} General proof notes:
+\begin{itemize}
+	\item Use the structure and values that we have access to to generate the desired values. Ie use facts about bounded above/below, use the LUB property to get a solid value in $S$, the supremum of $L$. 
+	\item The fact that we know so little about $S$ and $E$ makes things easier, because there only are so many things you can try to create values from
+\end{itemize}
+\end{remark}
 \end{document}
