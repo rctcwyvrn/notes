@@ -732,9 +732,26 @@ snippet ~rmk "Remark" bA
 \end{remark}
 endsnippet
 
+snippet ~line "Horizontal line" bA
+\bigskip
+\hrule
+\bigskip
+~\\\\
+endsnippet
+
 context "math()"
 snippet ~normgrp "Normal group notation" iA
 \trianglelefteq
+endsnippet
+
+context "math()"
+snippet ~lr{ "{ }" iA
+\left\\{ $0 \right\\}
+endsnippet
+
+context "math()"
+snippet ~lr[ "[ ]" iA
+\left[ $0 \right]
 endsnippet
 
 snippet ~template "My template" bA
