@@ -1,0 +1,95 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{framed}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{braket}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\qed}{\null\nobreak\hfill\ensuremath{\square}}
+
+\definecolor{defBorder}{rgb}{0.122, 0.435, 0.698}
+\definecolor{exampleBorder}{rgb}{0.8, 0.58, 0.46}
+\definecolor{propBorder}{rgb}{0.0, 0.5, 0.0}
+\definecolor{theoremBorder}{rgb}{0.2, 0.2, 0.6}
+\definecolor{proofBorder}{rgb}{1.0, 0.44, 0.37}
+\definecolor{rmkBorder}{rgb}{0.75, 0.58, 0.89}
+\definecolor{claimBorder}{rgb}{0.0, 0.42, 0.24}
+\definecolor{lemmaBorder}{rgb}{0.4, 0.6, 0.8}
+
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=defBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{definition}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=exampleBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{example}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=propBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{prop}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=theoremBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{theorem}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=proofBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{proof}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=rmkBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{remark}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=claimBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{claim}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=lemmaBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{lemma}
+
+\title{Taylor series}
+\author{rctcwyvrn}
+\date{August 2020}
+\begin{document}
+\maketitle
+
+\section{Taylor series (review)}
+A power series is
+\begin{align}
+	S(x) = a_0 + a_1x + a_2x^2 \ldots = \sum_{n=0}^{\infty} a_nx^n
+\end{align}
+Say we know all the derivatives of a function $f(x)$, can we determine a power series? \\
+~\\
+Let $f(x) = a_0 + a_1x + a_2x^2 \ldots$ and solve for $a_i$.
+\begin{align}
+	f'(x) &= a_1 + 2a_2x + 3a_3x^2 \ldots \\
+	f''(x) &= 2a_2 + 6a_3x \ldots  \\
+	f^{n}(x) &= n!a_n + (n+1) \ldots 2 * a_{n+1}
+\end{align}
+Sub in $x=0$ to determine all the coefficients $a_i$
+\begin{align}
+	f'(0) &= a_1 \\ 
+	f''(0) &= 2a_2 \\
+	f^{n}(0) &= n!a_n 
+\end{align}
+So filling in the coefficients we get the {\color{blue} \textbf{Taylor series}}
+\[
+	f(x) = f(0) + \frac{f'(0)}{1!}x \ldots \frac{f^{n}(0)}{n!}x^n \ldots
+.\] 
+In sum notation
+\[
+	f(x) = \sum_{n=0}^{\infty} \frac{f^{n}(0)}{n!}x^n 
+.\]
+\begin{definition} 
+\textbf{Definition:} Hyperbolic trig \\
+~\\
+\begin{align}
+	\sinh &= \frac{e^x - e^{-x}}{2} = x + \frac{x^3}{3!} + \frac{x^5}{5!} \ldots \\
+	\cosh &= \frac{e^x + e^{-x}}{2} = 1 + \frac{x^2}{2!} + \frac{x^4}{4!} \ldots 
+\end{align}
+The series are just the $\sin$ and $\cos$ ones, but with no negative signs
+\begin{itemize}
+	\item See notebook for graphical representation of $\sinh$ and $\cosh$
+\end{itemize}
+\end{definition}
+Now back to ODE stuff
+\begin{example} 
+\textbf{Example:} Generating the derivatives of the solution from the ODE \\
+~\\
+Given $y'=2y$, $y(0) = 4)$, we know that $y'' = 2y' = 4y$, continuing on we get that $y^n = 2^n y$ \\
+~\\
+Now write out the taylor series
+\begin{align}
+	y(x) &= \sum_{n=0}^{\infty} \frac{y^n(0)}{n!}x^n \\
+	     &= \sum_{n=0}^{\infty} \frac{2^n y(0)}{n!}x^n  \\
+	     &= 4\sum_{n=0}^{\infty} \frac{2^n}{n!}x^n \\
+	     &= 4e^{2x}
+\end{align}
+And we can check that this is correct by just solving the ODE (which is separable)
+\end{example}
+\end{document}

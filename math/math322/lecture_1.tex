@@ -39,10 +39,29 @@
 \maketitle
 
 \section{Lecture 1}
-insert notes about partitions and equivalence relations that i missed (the set just gets sorted into partitions where everything in one partition is equivalent to the others in the partition) \\
-~\\
-
 \begin{definition} 
+\textbf{Definition:} Partition \\
+~\\
+Let $X$ be a set, $X_i$ subsets such that each $x\in X$ is in exactly one $X_i$ (they make a {\color{blue} \textbf{disjoint union of $X$}})
+\begin{itemize}
+	\item The $X_i$ are then a {\color{blue} \textbf{partition}} of X
+	\item Note: The $X_i$ maybe of differing sizes
+	\item There may also be an infinite number of them
+\end{itemize}
+\end{definition}
+\begin{definition} 
+\textbf{Definition:} Equivalence relation \\
+~\\
+Elements of $X$ are uniquely grouped by which $X_i$ they're in, so we can use this to define an {\color{blue} \textbf{equivalence relation ($\sim$)}} ie: $\alpha\sim\beta$ if they live in the same $X_i$ \\
+~\\
+Properties
+\begin{itemize}
+	\item Reflexive: $x\sim x$ always
+	\item Transitive: $a\sim b$ and $b\sim c$ means $a\sim c$
+	\item Symmetric: $x\sim y$ implies $y\sim x$
+\end{itemize}
+\end{definition}
+\begin{definition}
 \textbf{Definition:} Equivalence classes \\
 ~\\
 Given a partition $\left\{X_i\right\}$ of $X$, you can form a new set whose elements are the sets $X_0, X_1, X_2 \ldots$. This is called $X/ \sim$. \\
@@ -108,7 +127,7 @@ $7,5$ share no common factors, $m=-2$, $n=3$, $-14 + 15 = 1$
 \begin{lemma} 
 \textbf{Lemma:} \\
 ~\\
-Suppose now that $a,b$ share a gcd $d$, then $\exists m,n\inZ: ma+mb=d$. So the earlier lemma is just a special case (when the gcd is 1)
+Suppose now that $a,b$ share a gcd $d$, then $\exists m,n\in\Z: ma+mb=d$. So the earlier lemma is just a special case (when the gcd is 1)
 \begin{itemize}
 	\item Note: because $d$ divides both $a$ and $b$, then it should be able to divide $ma+nb$ for any $m,n$
 \end{itemize}
