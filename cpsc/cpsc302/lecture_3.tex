@@ -1,0 +1,92 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{framed}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{braket}
+\usepackage{listings}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\qed}{\null\nobreak\hfill\ensuremath{\square}}
+
+\definecolor{defBorder}{rgb}{0.122, 0.435, 0.698}
+\definecolor{exampleBorder}{rgb}{0.8, 0.58, 0.46}
+\definecolor{propBorder}{rgb}{0.0, 0.5, 0.0}
+\definecolor{theoremBorder}{rgb}{0.2, 0.2, 0.6}
+\definecolor{proofBorder}{rgb}{1.0, 0.44, 0.37}
+\definecolor{rmkBorder}{rgb}{0.75, 0.58, 0.89}
+\definecolor{claimBorder}{rgb}{0.0, 0.42, 0.24}
+\definecolor{lemmaBorder}{rgb}{0.4, 0.6, 0.8}
+
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=defBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{definition}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=exampleBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{example}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=propBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{prop}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=theoremBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{theorem}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=proofBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{proof}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=rmkBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{remark}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=claimBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{claim}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=lemmaBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{lemma}
+
+\title{CPSC 302}
+\author{rctcwyvrn}
+\date{Sept 14 2020}
+\begin{document}
+\maketitle
+
+\section{Numerical algorithms and error}
+How to measure errors?
+\begin{itemize}
+	\item Absolute
+	\begin{itemize}
+		\item The {\color{blue} \textbf{absolute error}} in $v$ approximating $u$ is $|u-v|$
+	\end{itemize}
+	\item Relative
+	\begin{itemize}
+		\item The {\color{blue} \textbf{relative error}} is $\frac{|u-v|}{|u|}$
+	\end{itemize}
+	\item Some combination
+\end{itemize}
+MATLAB code example
+\begin{lstlisting}
+	% some examples
+	u = [1;	   1;    -1.5; 100;  100]
+	v = [0.99; 1.01; -1.2; 99.99; 99]
+	abs_error = abs(u-v)
+	relative_error = abs(u-v)./abs(u) % use ./ for vector math
+\end{lstlisting}
+Sources/types of errors
+\begin{itemize}
+	\item In the model (how close it is to reality)
+	\item In the input data
+\end{itemize}
+Approximation errors
+\begin{itemize}
+	\item Discritization errors
+	\item Convergence errors
+	\item Roundoff errors
+\end{itemize}
+\begin{example} 
+\textbf{Example:}  \\
+~\\
+Given a smooth function $f(x)$. approximate the derivative at $x=x_0$
+\begin{itemize}
+	\item We get a discritization error when we don't choose a small enough $h$ for calculating the derivative, ie we discretize $\R$ to size $h$
+	\item We can then calculate the discritization error from the Taylor series(see notebook)
+\end{itemize}
+Try with $f(x) = \sin(x)$ at $x_0 = 1.2$. (so we want to approximate $\cos$)
+\begin{itemize}
+	\item When $h$ is large ($h>10^{-8}$) we see that the error matches the discritization error
+	\item For smaller $h$ there is also a roundoff error
+	\begin{itemize}
+		\item We see that for smaller $h$, around $10^{-10}$ the error begins to grow (not following the error pattern we expected from just discritization)
+		\item Why is there roundoff error? Soon tm
+	\end{itemize}
+\end{itemize}
+\end{example}
+\end{document}
