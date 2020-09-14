@@ -346,4 +346,169 @@ Backward: (exercise, should be very similar)
 	\item The fact that we know so little about $S$ and $E$ makes things easier, because there only are so many things you can try to create values from
 \end{itemize}
 \end{remark}
+\subsection{Fields and ordered fields}
+\begin{definition} 
+\textbf{Definition:} Fields \\
+~\\
+A {\color{blue} \textbf{field}} is a set $F$ along with two operations $(+,\cdot)$ such that the following properties ({\color{blue} \textbf{the field axioms}}) \\
+~\\
+Addition
+\begin{enumerate}
+	\item $x,y\in F$ implies $x+y\in F$ (Closed under addition)
+	\item Commutative: $x+y = y+x$
+	\item Associative: $(x+y)+z = x + (y+z)$
+	\item Additive identity: $\exists 0\in F$ st $\forall x\in F: 0+x=x$
+	\item Additive inverse: $\forall x\in F: \exists y\in F: x+y=0$. Notation: $y=-x$
+\end{enumerate}
+Multiplication
+\begin{enumerate}
+	\item $x,y\in F$ implies $x\cdot y\in F$ (Closed under multiplication)
+	\item Commutative: $x\cdot y = y\cdot x$
+	\item Associative: $(x\cdot y)\cdot z = x \cdot (y\cdot z)$
+	\item Multiplicative identity: $\exists 1\in F$ st $1\neq 0$ and $\forall x\in F: 1\cdot x=x$
+	\item Multiplicative inverse: $\forall x\in F: x\neq 0 \implies \exists y\in F: x\cdot y=0$. Notation: $y=x^{-1}$ or $y=\frac{1}{x}$ 
+	\item Distributive: $x\cdot (y+z) = x\cdot y + x\cdot z$
+\end{enumerate}
+Little exercises
+\begin{itemize}
+	\item Show that $0$ is unique
+	\item Show that $1$ is unique
+\end{itemize}
+\end{definition}
+\begin{example} 
+\textbf{Example:} Fields \\
+~\\
+$\Q$ is a field. $\Z$ is not a field (no multiplicative inverses)
+\end{example}
+\begin{example} 
+\textbf{Example:}  \\
+~\\
+$F = \left\{ 0,1 \right\}$ is a field.
+\begin{itemize}
+	\item Let $1+1 = 0$, define everything else as expected
+	\item (So this is really just $\Z /2\Z$)
+	\item Notation: This set is called $F_2$ (isn't this $GF(2)$?)
+	\item Note: Consider these as bits, then $+$ is XOR and $\cdot$ is AND
+\end{itemize}
+Note that $2$ is a prime, and this generalizes for any prime $p$ \\
+~\\
+Let $F_p = \left\{ 0,1,\ldots p-1 \right\}$ where addition and multiplication are mod$p$. This is a field when $p$ is prime
+\begin{itemize}
+	\item For more properties of fields: Rudin prop 1.14, 1.15, 1.16
+\end{itemize}
+\end{example}
+Now we have fields and we have ordered sets, so the logical next step is ordered fields.
+\begin{definition} 
+\textbf{Definition:} Ordered fields \\
+~\\
+An {\color{blue} \textbf{ordered field}} is a field $F$ that is also an ordered set with the properties
+\begin{enumerate}
+	\item $x,y,z\in F$ $y<z$, then $x+y<x+z$
+	\item $x,y\in F$, $x>0 $ and $y>0$ then $x\cdot y >0$ (Note that we're combining the additive identity $0$, and the multiplication operator)
+\end{enumerate}
+\end{definition}
+\begin{example} 
+\textbf{Example:}
+\begin{itemize}
+	\item $\Q$ is an ordered field.
+	\item What about $F_2$? Can you define an ordering such that it makes an ordered set? No! (prove by exhaustion since there are only two orderings)
+	\begin{proof} 
+	\textbf{Proof:}
+	\begin{enumerate}
+		\item Let $0<1$. But $0<1$ but $1+0 < 1 + 1 = 0$ does not hold (property 1)
+		\item Let $1<0$, but $ 0 = 1+1 < 0+1 = 1$ does not hold (again property 1)
+	\end{enumerate}
+	\end{proof}
+\end{itemize}
+\end{example}
+\begin{theorem} 
+\textbf{Theorem:} {\color{blue} } \\
+~\\
+(Rudin 1.19) $\exists$ an ordered field that has the LUB property and that contains $\Q$ as a subfield, call this field $\R$ 
+\begin{itemize}
+	\item What does that $\exists$ mean in this context? It means that we can create $\R$ from the pieces we already know $\Q, \Z, \N$ etc
+	\item We say that there exists a field $\R$ but is it unique? No, but the idea is that they all have the same properties (and I assume are isomorphic?) so we only consider there to be one $\R$
+	\item  (I assume a subfield is just a subset of $F$ with addition and multiplication are closed and the field axioms hold)
+\end{itemize}
+\end{theorem}
+\subsection{Consequences of the LUB property}
+We specified that $\R$ in the last theorem would have the LUB property, what properties of $\R$ do we get from that?
+\begin{theorem} 
+\textbf{Theorem:} {\color{blue} } \\
+~\\
+(Rudin 1.20) Three properties
+\begin{enumerate}
+	\item $x,y\in\R: x>0$, then $\exists n\in\N: nx>y$ (Archimidean property) 
+	\item $x,y\in\R: x<y$ then $\exists p\in\Q: x<p<y$ (Rationals are 'dense' in $\R$)
+	\item $x,y\in\R: x<y$, then $\exists r \in \R\setminus\Q: x<r<y$ ($\R$ without $\Q$ is 'dense' in $\R$
+\end{enumerate}
+\end{theorem}
+\begin{proof} 
+\textbf{Proof:} A from Rudin 1.20 \\
+~\\
+Proof (A) Let $A = \left\{nx: n\in\N \right\}$ \\
+If the conclusion is false then $\forall a\in A: a\le y$, $y$ would be an upper bound for $A$. \\
+~\\
+$\R$ has the LUB property, so $\alpha = $sup$A$ would exist. WTS that this is a contradiction ($A$ has no supremum) by finding $k\in\N: kx > \alpha$.  \\
+~\\
+We know that $x>0$ which implies $\alpha - x < \alpha$, so $\alpha -x$ is not an upper bound of $A$ (because $\alpha$ is the supremum). \\
+$\implies \exists m\in\N: mx > \alpha - x$ \\
+$\implies (m+1)x > \alpha$ which is a contradiction, since an element of $A$ is greater than the supremum
+\end{proof}
+Next, prove a stronger version of (A) to help with the later proofs \\
+~\\
+(A*) If $x,y\in\R: x>0$ then $\exists n\in\Z: (n-1)x \le y < nx$
+\begin{proof} 
+\textbf{Proof:} A* \\
+~\\
+Case 1: $y\ge 0$. Let $A = \left\{ m\in\N: y<mx \right\}$ (set of natural numbers). From $A$ we know that $A$ is nonempty. \\
+~\\
+Every nonempty subset of $\N$ has a smallest element (exercise). Let $n = min(A)$. Check that $n$ fits the inequality that we want.
+\begin{itemize}
+	\item $y <nx$ because it is an element of $A$
+	\item $(n-1)x \le y$ because it is the minimum element of $A$, so any smaller naturals $m$ must not be in $A$, and thus be $mx\le y$
+\end{itemize}
+Case 2: $y<0$ exercise
+\end{proof}
+\begin{proof} 
+\textbf{Proof:} The $\Q$ is dense in $\R$ (statement B)\\
+~\\
+Since $y-x>0$, by (A) $\exists n\in\N: n(y-x) > 1$ (choose $x=y-x$, $y=1$ for the theorem). \\ 
+~\\
+By (A*) $\exists m\in\Z: m-1 \le nx < m$ (choose $x=1$, $y=nx$ for the theorem) \\
+$\implies nx  < m\le nx+1$ \\
+~\\
+Now from $n(y-x) > 1$ we have \\
+$\implies nx < m \le nx+1 < ny$ \\
+~\\
+Divide both sides by $n$, we get \\
+$\implies x < \frac{m}{n} < y$
+\end{proof}
+\begin{proof} 
+\textbf{Proof:} Statement C \\
+~\\
+Borrow a fact from next lecture: $\exists s\in\R\setminus\Q: s>0, s^2=2$, call $s=\sqrt{2}$. Proof will be next lecture, and it won't depend on statement C.
+\begin{itemize}
+	\item $\sqrt{2} < 2$. This isn't obvious, since all we know is that the square of $\sqrt{2}^2 = 2$. The cases $\sqrt{2} = 2$ and $\sqrt{2} > 2$ both don't make sense, so $\sqrt{2} < 2$     
+	\begin{itemize}
+		\item Rudin 1.18: $a<b \implies a^2 < b^2$
+	\end{itemize}
+\end{itemize}
+Thus $0< \sqrt{2}/2 < 1$, use this as a starting point to build the irrational number between $x,y$ \\
+~\\
+By (B) $\exists p\in\Q: x<p<y$. Repeat with $p$ and $y$, $\exists q\in\Q: x < p < q< y$ \\
+~\\
+Let $\alpha = p + \frac{\sqrt{2}}{2} (q-p)$
+\begin{itemize}
+	\item Is between $p$ and $q$ because it's a number less than $1$ ($ \frac{\sqrt{2}}{2}$) times the delta between $p$ and $q$
+	\begin{itemize}
+		\item $p<\alpha< p+1(q-p) = q$. So we have $x<p<\alpha<q<y$
+        \end{itemize}
+	\item Is not rational because $\sqrt{2}$ 
+	\begin{itemize}
+		\item If $\alpha$ was rational, then we could write $\sqrt{2} = 2(\frac{\alpha-p}{(q-p)})$, which implies $\sqrt{2} \in\Q$, which is a contradiction 
+	\end{itemize}
+\end{itemize}
+\qed
+\end{proof}
 \end{document}
