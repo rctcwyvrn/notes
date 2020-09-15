@@ -39,12 +39,13 @@
 \begin{document}
 \maketitle
 
-\section{Numerical algorithms and error}
-How to measure errors?
+\section{Pre-class}
+\subsection{Numerical algorithms and error}
+How to measure errors? (For $v$ approximating $u$) 
 \begin{itemize}
 	\item Absolute
 	\begin{itemize}
-		\item The {\color{blue} \textbf{absolute error}} in $v$ approximating $u$ is $|u-v|$
+		\item The {\color{blue} \textbf{absolute error}} is $|u-v|$
 	\end{itemize}
 	\item Relative
 	\begin{itemize}
@@ -89,4 +90,29 @@ Try with $f(x) = \sin(x)$ at $x_0 = 1.2$. (so we want to approximate $\cos$)
 	\end{itemize}
 \end{itemize}
 \end{example}
+
+\section{Lecture}
+\begin{itemize}
+	\item Q: When is absolute error more important than relative error?
+	\item A: Like the height of a flight of stairs, you don't really care how relatively high the stairs are, just that you're not off by a certain amount
+\end{itemize}
+\begin{itemize}
+	\item Q: What about relative error?
+	\item A: If you're measuring something that's 100kg, you don't necessarily care if you're off by 1g, but if you're measuring something that weighs 2g, being off by 1g matters alot.
+\end{itemize}
+Roundoff error
+\begin{itemize}
+	\item Why does decreasing $h$ not continue to decrease the error? Why does the error start increasing after a certain point?
+	\item Idea: As we lower $h$ we increase the proportion that roundoff error affects our calculations involving $h$, which increases the error proportionally in the result
+	\item Q: How would you define a roundoff error?
+	\item A: Computers don't have infinite memory, so at some point it has to round off the value, which introduces error.
+\end{itemize}
+Discretization error
+\begin{itemize}
+	\item When you make finite approximations of continuous processes
+\end{itemize}
+Convergence errors
+\begin{itemize}
+	\item Arise from iterative methods
+\end{itemize}
 \end{document}

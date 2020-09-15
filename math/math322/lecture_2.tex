@@ -1,0 +1,219 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{framed}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{braket}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\qed}{\null\nobreak\hfill\ensuremath{\square}}
+
+\definecolor{defBorder}{rgb}{0.122, 0.435, 0.698}
+\definecolor{exampleBorder}{rgb}{0.8, 0.58, 0.46}
+\definecolor{propBorder}{rgb}{0.0, 0.5, 0.0}
+\definecolor{theoremBorder}{rgb}{0.2, 0.2, 0.6}
+\definecolor{proofBorder}{rgb}{1.0, 0.44, 0.37}
+\definecolor{rmkBorder}{rgb}{0.75, 0.58, 0.89}
+\definecolor{claimBorder}{rgb}{0.0, 0.42, 0.24}
+\definecolor{lemmaBorder}{rgb}{0.4, 0.6, 0.8}
+
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=defBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{definition}
+\newmdenv[nobreak=false,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=exampleBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{example}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=propBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{prop}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=theoremBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{theorem}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=proofBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{proof}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=rmkBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{remark}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=claimBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{claim}
+\newmdenv[nobreak=true,innerlinewidth=0.5pt, roundcorner=4pt,linecolor=lemmaBorder,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=12pt,innerbottommargin=12pt]{lemma}
+
+\title{Math 322 Lecture 2}
+\author{rctcwyvrn}
+\date{Sept 15 2020}
+\begin{document}
+\maketitle
+
+\section{Quotient sets continued}
+The quotient set $\Z /n\Z$ has a kind of addition on it
+\begin{align}
+	[\alpha] + [\beta] = [\alpha+\beta]
+\end{align}
+But is it well defined? (is it consistent for different values of $\alpha$ and $\beta$?) \\
+~\\
+Suppose $\alpha\sim\alpha '$, so $\alpha -\alpha' = kn$, similarly for $\beta$ and $\beta'$. So we can rewrite 
+\begin{align}
+	\alpha + \beta &= \alpha' + \beta' + (kn+jn)
+\end{align}
+Which implies that $\alpha' + \beta' \sim \alpha + \beta$, so the addition is well defined. \\
+~\\
+We can add and subtract in this set, so it's a group
+\begin{definition} 
+\textbf{Definition:} Group \\
+~\\
+A {\color{blue} \textbf{group}} is a set $G$ with a binary operation "multiplication" $(\cdot)$ such that
+\begin{itemize}
+	\item Associative $(g_1\cdot g_2) \cdot g_3 = g_1\cdot (g_2\cdot g_3)$
+	\item Identity $\exists 1_g: \forall x\in G: 1_g \cdot x = x\cdot 1_g = x$
+	\item Inverse: $\forall x\in G: \exists y\in G: x\cdot y = y\cdot x = 1_g$
+\end{itemize}
+A group is a {\color{blue} \textbf{commutative group}} or {\color{blue} \textbf{abelian group}} if
+\begin{itemize}
+	\item $\forall x,y \in G: x\cdot y= y\cdot x$
+	\item Notation: use $+$ as the operator for a commutative group
+\end{itemize}
+\end{definition}
+\begin{example} 
+\textbf{Example:} Obvious examples \\
+~\\
+$\Z, +$
+\end{example}
+\begin{example} 
+\textbf{Example:}  \\
+~\\
+$(\Z /N\Z, +)$ is a group
+\begin{itemize}
+	\item It is also finite and commutative
+\end{itemize}
+\end{example}
+\begin{example} 
+\textbf{Example:} Matricies \\
+~\\
+$n$ x $n$ matricies are a group under $+$. The identity matrix is all zero, and the inverse matrix $m$ is $-m$
+\begin{itemize}
+	\item What about under multiplication?
+	\item No, because not all matricies have inverses (so you need non-zero determinant matricies)
+	\begin{itemize}
+		\item So the set of $n$ by $n$ matricies with non-zero determinant is a group
+		\item It is also non-commutative (matrix multiplication order matters)
+	\end{itemize}
+\end{itemize}
+\begin{remark} 
+	\textbf{Remark:} We didn't actually check associativity (it's usually just trivial or annoying) 
+\end{remark}
+\end{example}
+\begin{remark} 
+\textbf{Remark:} Composition of functions is associative
+\begin{itemize}
+	\item ie $x\to y\to z\to w$
+	\item $h\circ (g\circ f) = (h\circ g)\circ f$
+	\item We can use this to check associativity easily
+\end{itemize}
+\end{remark}
+\begin{example} 
+\textbf{Example:}  \\
+~\\
+Let $A$ be a set, and $S(A)$ the set of all bijective maps $f: A\to A$. 
+\begin{itemize}
+	\item $(S(A),\circ)$ is a group
+	\item The symmetric group on the set $A$
+	\item You can also thing of each of these functions as a permutation of the order of the elements
+\end{itemize}
+Check
+\begin{itemize}
+	\item Associativity: $\circ$ is associative
+	\item Identity: The identity function
+	\item Inverse: The inverse function (which is why we require bijection)
+\end{itemize}
+Properties (of $S_n = S(\{1,2,3,\ldots\}$)
+\begin{itemize}
+	\item Highly non-commutative
+	\item $n!$ elements
+\end{itemize}
+\end{example}
+So a group is just a set that we can multiply and divide (multiply by inverse) that satisfies certain rules (depending on the group)
+\subsection{Cycle decomposition of permutations}
+Consider the element of $S_7$
+\begin{align}
+	1\to 3 \\
+	3\to 5 \\
+	\ldots
+\end{align}
+Is there a better way to write it?
+\begin{align}
+	(1\to 3\to 5\to \ldots) 
+\end{align}
+This is called the {\color{blue} \textbf{cycle representation}} (usually written without the arrows)
+\begin{example} 
+\textbf{Example:}  \\
+~\\
+$(135)(467)(2)$ each cycle is grouped together, the entire function is 
+\begin{itemize}
+	\item $1\to 3\to 5\to 1$
+	\item $4\to 6\to 7\to 4$
+	\item $2\to 2$
+\end{itemize} 
+Note:
+\begin{itemize}
+	\item We see that $\sigma ^m = 1$ for some $m$, namely the LCM of the cycle lengths
+	\item Note that each cycle has separate values, so they are {\color{blue} \textbf{disjoint}}
+\end{itemize}
+What about non disjoint cycles? Like $(1,2,3)(3,5,7)$
+\begin{align}
+	\sigma &= \sigma _1 \circ \sigma _2 \\
+	\sigma_1 &= (123) \\ 
+	\sigma_2 &= (357) \\
+	\intertext{The group operator is composition, so compose them}
+	\intertext{Note the order matters, $\sigma_2(\sigma_1)$ is}
+	\sigma &= (12573)(4)(6) \\
+	\intertext{The other order is $\sigma_2$ first then $\sigma_1$, which is the convention for this class( $\sigma_1\circ\sigma_2 = \sigma_1(\sigma_2(x))$}
+	\sigma &= (12357)(4)(6)
+	\intertext{So in $S_7$}
+	(123)(357) &= (12357)
+\end{align}
+Note: $(123)$ is really just shorthand for $(123)(4)(5)(6)(7)$ in $S_7$
+\begin{itemize}
+	\item They're called {\color{blue} \textbf{fixed points}}
+	\item Note: it does depend on which set you're in ( $(1,2,3)$ means different things in $S_7$ and $S_{100}$)
+\end{itemize}
+\begin{remark} 
+\textbf{Remark:}  Not all cycles are disjoint, but you can rewrite a {\color{blue} \textbf{disjoint decomposition}} for non disjoint cycles, like $(123)(357)$
+\end{remark}
+\begin{remark} 
+	\textbf{Remark:} Disjoint cycles will always commute with each other, because they don't share any elements. ie $(1,2,3)(4,5,6) = (4,5,6)(1,2,3)$ 
+	\begin{itemize}
+		\item Note: Not all commutative elements are disjoint though
+	\end{itemize}
+\end{remark}
+\end{example}
+\begin{definition} 
+\textbf{Definition:} Order \\
+~\\
+For group $G$, $g\in G$, the {\color{blue} \textbf{order of g}} is the smallest positive integer $m$ such that $g^m = g\cdot g\cdot g\cdot g \ldots = 1_G$
+\begin{itemize}
+	\item If no such $m$ exists, then $g$ has infinite order
+	\item $(1354)(6(2)$ has order $4$
+	\item $(123)(45)$ has order $6$, because the LCM (the first time they both end up at the start at the same time) is $6$
+\end{itemize}
+\end{definition}
+\begin{definition} 
+\textbf{Definition:} Group order \\
+~\\
+The order of a group is the number of elements in $G$ (may be infinite)
+\end{definition}
+\begin{lemma} 
+\textbf{Lemma:} \\
+~\\
+Let $G$ be a finite group, then every element of $G$ has finite order
+\end{lemma}
+\begin{proof} 
+\textbf{Proof:} \\
+~\\
+Consider $g,g^2,g^3\ldots$. \\
+~\\
+Since $G$ is finite $\exists r,s: r\neq s: g^r = g^s$ (by pigeonhole, since $G$ is finite it must repeat at some point). \\
+$\implies g^r g^{-r} = g^s g^{-r}$ \\
+$\implies 1_g = g^{s-r}$ and $s\neq r$, so $g$ has order $s-r$
+\end{proof}
+General principle: Commutative groups are simpler and easier to make sense of. Non-commutative groups have weird things and hare harder to deal with \\
+~\\
+Corresponding reading:
+\begin{itemize}
+	\item 1.1, 1.3
+	\item 1.2 next lecture
+\end{itemize}
+\end{document}

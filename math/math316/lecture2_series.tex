@@ -81,7 +81,7 @@ Now back to ODE stuff
 \begin{example} 
 \textbf{Example:} Generating the derivatives of the solution from the ODE \\
 ~\\
-Given $y'=2y$, $y(0) = 4)$, we know that $y'' = 2y' = 4y$, continuing on we get that $y^n = 2^n y$ \\
+Given $y'=2y$, $y(0) = 4)$, we know that $y'' = 2y' = 4y$, continuing on we get that $y^{(n)} = 2^n y$ \\
 ~\\
 Now write out the taylor series
 \begin{align}
@@ -91,5 +91,95 @@ Now write out the taylor series
 	     &= 4e^{2x}
 \end{align}
 And we can check that this is correct by just solving the ODE (which is separable)
+\end{example}
+But is there a more general way of doing this (getting a Taylor series from a DE)?
+\begin{example} 
+\textbf{Example:} Undetermined coefficients \\
+~\\
+Assume that there is a Taylor series, and figure out the coefficients from the DE. \\
+\[
+Ly = y' - 2y = 0
+.\]  
+Assume $y$ has a power series $y=\sum_{n=0}^{\infty} a_n x^n$
+\begin{align}
+	y' &= \sum_{n=1}^{\infty} a_n n x^{n-1}
+\end{align}
+Now substitute them into $Ly$
+\begin{align}
+	Ly &= y' - 2y = 0 \\
+	   &= 1a_1x^0 + 2a_2x + 3a_3+x^2 \ldots - 2(a_0+ a_1x + a_2x^2 \ldots) \\
+	   &= (a_1-2a_0)x^0 + (2a_2-2a_1)x + (3a_3-2a_2)x^2 + \ldots = 0
+\end{align}
+This should hold for all values of $x$, so each of those coefficients should be zero.
+\begin{itemize}
+	\item Alternatively we can think of $x$, $x^2$ \ldots as linearly independent values, and the sum is equal to zero, which implies that the coefficients are zero
+\end{itemize}
+\begin{align}
+	a_1 &= 2a_0 \\
+	a_2 &= \frac{2a_1}{2} = 2^2 \frac{a_0}{2} \\
+	a_3 &= \frac{2a_2}{3} = 2^3 \frac{a_0}{3!} \\
+	\ldots \\
+	a_n &= 2^n \frac{a_0}{n!} \\
+\end{align}
+So we now have
+\begin{align}
+	y(x) &= a_0 (1 + 2x + \ldots \frac{2^n}{n!}x^n \\
+	     &= a_0 e^{2x}
+\end{align}
+\end{example}
+Try it again, this time with just sum notation instead
+\begin{example} 
+\textbf{Example:}  \\
+~\\
+$y = \sum_{n=0}^{\infty} a_n x^n$, so $y' = \sum_{n=1}^{\infty} a_n n x^{n-1}$ \\
+\begin{align}
+		Ly &= y' - 2y = 0 \\
+		   &= \sum_{n=1}^{\infty} a_n n x^{n-1} - 2\sum_{n=0}^{\infty} a_n x^n \\
+		   &= \sum_{m=0}^{\infty} a_{m+1} (m+1) x^m - 2\sum_{m=0}^{\infty} a_m x^m \\
+		   &=  \sum_{m=0}^{\infty} (a_{m+1} (m+1) - 2a_m) x^m \\ 
+\end{align}
+By the same argument as before, all these coefficients should be $0$, 
+\[
+	a_{m+1} = \frac{2a_m}{m+1}
+.\] 
+which gives us a recursive formula for the coefficients. Start at $m=0$
+\begin{align}
+	a_1 &= \frac{2a_0}{1} \\
+	a_2 &= \frac{2a_1}{2} = \frac{2^2 a_0}{2} \\
+	a_3 &= \frac{2^3a_0}{3!} \\
+	\ldots
+	a_n &= \frac{2^n a_0}{n!}
+\end{align}
+And then we end up at the same solution, $y(x) = a_0 e^{2x}$
+\end{example}
+Now for a more complex example
+\begin{example} 
+\textbf{Example:} Ainy Equation \\
+\[
+Ly = y'' - xy = 0
+.\] 
+Let $y =\sum_{n=0}^{\infty} a_n x^n$, $y'' = \sum_{n=2}^{\infty} a_n n(n-1) x^{n-2}$
+\begin{align}
+	Ly &= y'' -xy = 0 \\
+	   &= \sum_{n=2}^{\infty} a_n n(n-1) x^{n-2} - \sum_{n=0}^{\infty} a_n x^{n+1} \\ 
+	   \intertext{Since we have the n+1 on the right summation, we want to shift the left sum to match, so set it to $m+1 = n-2$}
+	   &= a_2(2)(1) + \sum_{m=0}^{\infty} a_{m+3} (m+3)(m+2)x^{m+1} - a_m x^{m+1} \\
+	   &= 2a_2 + \sum_{m=0}^{\infty} ( a_{m+3} (m+3)(m+2) - a_m)x^{m+1}
+\end{align}
+So from that we can solve the coefficients:
+\begin{align}
+	a_2 &= 0 \\
+	a_{m+3} &= \frac{a_m}{(m+3)(m+2)} \\	
+	m = 0: a_3 &= \frac{a_0}{3*2} \\
+	m = 3: a_6 &= \frac{a_3}{6*5} = \frac{a_0}{6*5*3*2} \\
+	m = 1: a_4 &= \frac{a_1}{4*3} \\
+	m = 4: a_7 &= \frac{a_4}{7*6} = \frac{a_1}{7*6*4*3}\\
+	m = 2: a_5 &= 0 \\
+	m = 5: a_8 &= 0
+\end{align}
+The general solution is the two groups of coefficients, namely
+\[
+	y(x) = a_0(1 + \frac{1}{3*2}x^3 + \frac{1}{6*5*3*2}x^5 \ldots) + a_1(1 + \frac{1}{4*3}x^4 + \frac{1}{7*6*4*3}x^7 \ldots) 
+.\] 
 \end{example}
 \end{document}

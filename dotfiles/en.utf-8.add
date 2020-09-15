@@ -12,8 +12,6 @@ surjective
 iff
 ker
 injectivity
-#smorphism
-ismorphism/!
 isomorphism
 ord
 Cosets
@@ -55,3 +53,10 @@ infenum
 todo
 WTS
 wts
+subfield
+MATLAB
+Discretization
+Roundoff
+discretization
+discretize
+roundoff
